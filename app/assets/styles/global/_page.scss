@@ -16,10 +16,7 @@
   @extend .antialiased;
   position: relative;
   z-index: 1;
-  background: $accent-color;
-  color: #fff;
-  padding: ($global-spacing * 1.5) 0;
-  box-shadow: 0 16px 20px 0 rgba($base-color, 0.08);
+  padding: ($global-spacing * 4) 0 ($global-spacing * 2) 0;
 
   a {
     color: inherit;
@@ -31,18 +28,17 @@
   }
 }
 
-.page__headline {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1.25rem;
+.page__title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: 0;
 }
 
-.page__title {
-  font-size: 1.25rem;
-  line-height: 1.25rem;
-  margin: 0;
+.page__subtitle {
+  font-size: 0.875rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  opacity: 0.64;
 }
 
 .nav-language-switcher {

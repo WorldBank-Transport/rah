@@ -12,6 +12,7 @@ export default class PageHeader extends React.PureComponent {
         <div className='inner'>
           <div className='page__headline'>
             <h1 className='page__title'><NavLink to='/' title='View homepage'><span>Rural Accessibility Hub</span></NavLink></h1>
+            <p className='page__subtitle'>Powered by Rural Accessibility Map</p>
           </div>
           <nav className='page__prime-nav nav' role='navigation'>
             <div className='nav__block nav__block--global'>

@@ -7,11 +7,7 @@
     @extend .antialiased;
     position: relative;
     z-index: 3;
-    background: $accent-color;
-    color: #fff;
-    padding: ($global-spacing * 1.5) 0;
-    box-shadow: 0 16px 20px 0 rgba($base-color, 0.08);
-    min-height: 5rem;
+    padding: ($global-spacing * 2) 0;
 
     > .inner {
       @extend .row, .row--centered;
