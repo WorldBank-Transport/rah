@@ -19,7 +19,7 @@ class App extends React.Component {
 
           {/* Twitter */}
           <meta name='twitter:card' content='summary' />
-          <meta name='twitter:site' content='@twitter-handle' />
+          <meta name='twitter:site' content='@wbg_transport' />
           <meta name='twitter:image:src' content='/assets/graphics/meta/default-meta-image.png' />
 
           {/* OG */}
