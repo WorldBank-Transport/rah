@@ -1,0 +1,587 @@
+/* ==========================================================================
+   Icon font: Collecticons
+   ========================================================================== */
+
+/**
+ * Designed by Development Seed
+ * https://developmentseed.org/
+ *
+ * Generated with collecticons-processor on June 27, 2018
+ * http://collecticons.io/
+ */
+
+
+
+
+@font-face {
+  font-family: "Collecticons";
+  
+  
+  src: url(data:application/font-woff;charset=utf-8;base64,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) format('woff');
+  
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+%collecticon,
+[class^="collecticon-"],
+[class*=" collecticon-"] {
+  speak: none;
+  font-family: "Collecticons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better font rendering */
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+%collecticon-arrow-down {
+  @extend %collecticon;
+  content: "\EA01"
+}
+.collecticon-arrow-down:before {
+  content: "\EA01"
+}
+
+%collecticon-arrow-left {
+  @extend %collecticon;
+  content: "\EA02"
+}
+.collecticon-arrow-left:before {
+  content: "\EA02"
+}
+
+%collecticon-arrow-loop {
+  @extend %collecticon;
+  content: "\EA03"
+}
+.collecticon-arrow-loop:before {
+  content: "\EA03"
+}
+
+%collecticon-arrow-right {
+  @extend %collecticon;
+  content: "\EA04"
+}
+.collecticon-arrow-right:before {
+  content: "\EA04"
+}
+
+%collecticon-arrow-spin-clockwise {
+  @extend %collecticon;
+  content: "\EA05"
+}
+.collecticon-arrow-spin-clockwise:before {
+  content: "\EA05"
+}
+
+%collecticon-arrow-up {
+  @extend %collecticon;
+  content: "\EA06"
+}
+.collecticon-arrow-up:before {
+  content: "\EA06"
+}
+
+%collecticon-chevron-down {
+  @extend %collecticon;
+  content: "\EA07"
+}
+.collecticon-chevron-down:before {
+  content: "\EA07"
+}
+
+%collecticon-chevron-left {
+  @extend %collecticon;
+  content: "\EA08"
+}
+.collecticon-chevron-left:before {
+  content: "\EA08"
+}
+
+%collecticon-chevron-right {
+  @extend %collecticon;
+  content: "\EA09"
+}
+.collecticon-chevron-right:before {
+  content: "\EA09"
+}
+
+%collecticon-chevron-up {
+  @extend %collecticon;
+  content: "\EA0A"
+}
+.collecticon-chevron-up:before {
+  content: "\EA0A"
+}
+
+%collecticon-circle-exclamation {
+  @extend %collecticon;
+  content: "\EA0B"
+}
+.collecticon-circle-exclamation:before {
+  content: "\EA0B"
+}
+
+%collecticon-circle-information {
+  @extend %collecticon;
+  content: "\EA0C"
+}
+.collecticon-circle-information:before {
+  content: "\EA0C"
+}
+
+%collecticon-circle-question {
+  @extend %collecticon;
+  content: "\EA0D"
+}
+.collecticon-circle-question:before {
+  content: "\EA0D"
+}
+
+%collecticon-circle-tick {
+  @extend %collecticon;
+  content: "\EA0E"
+}
+.collecticon-circle-tick:before {
+  content: "\EA0E"
+}
+
+%collecticon-circle-xmark {
+  @extend %collecticon;
+  content: "\EA0F"
+}
+.collecticon-circle-xmark:before {
+  content: "\EA0F"
+}
+
+%collecticon-clock {
+  @extend %collecticon;
+  content: "\EA10"
+}
+.collecticon-clock:before {
+  content: "\EA10"
+}
+
+%collecticon-code {
+  @extend %collecticon;
+  content: "\EA11"
+}
+.collecticon-code:before {
+  content: "\EA11"
+}
+
+%collecticon-cog {
+  @extend %collecticon;
+  content: "\EA12"
+}
+.collecticon-cog:before {
+  content: "\EA12"
+}
+
+%collecticon-disc-xmark {
+  @extend %collecticon;
+  content: "\EA13"
+}
+.collecticon-disc-xmark:before {
+  content: "\EA13"
+}
+
+%collecticon-download-3 {
+  @extend %collecticon;
+  content: "\EA14"
+}
+.collecticon-download-3:before {
+  content: "\EA14"
+}
+
+%collecticon-ellipsis-horizontal {
+  @extend %collecticon;
+  content: "\EA15"
+}
+.collecticon-ellipsis-horizontal:before {
+  content: "\EA15"
+}
+
+%collecticon-ellipsis-vertical {
+  @extend %collecticon;
+  content: "\EA16"
+}
+.collecticon-ellipsis-vertical:before {
+  content: "\EA16"
+}
+
+%collecticon-fence {
+  @extend %collecticon;
+  content: "\EA17"
+}
+.collecticon-fence:before {
+  content: "\EA17"
+}
+
+%collecticon-folder {
+  @extend %collecticon;
+  content: "\EA18"
+}
+.collecticon-folder:before {
+  content: "\EA18"
+}
+
+%collecticon-house {
+  @extend %collecticon;
+  content: "\EA19"
+}
+.collecticon-house:before {
+  content: "\EA19"
+}
+
+%collecticon-houses {
+  @extend %collecticon;
+  content: "\EA1A"
+}
+.collecticon-houses:before {
+  content: "\EA1A"
+}
+
+%collecticon-iso-stack {
+  @extend %collecticon;
+  content: "\EA1B"
+}
+.collecticon-iso-stack:before {
+  content: "\EA1B"
+}
+
+%collecticon-lock {
+  @extend %collecticon;
+  content: "\EA1C"
+}
+.collecticon-lock:before {
+  content: "\EA1C"
+}
+
+%collecticon-magnifier-left {
+  @extend %collecticon;
+  content: "\EA1D"
+}
+.collecticon-magnifier-left:before {
+  content: "\EA1D"
+}
+
+%collecticon-magnifier-right {
+  @extend %collecticon;
+  content: "\EA1E"
+}
+.collecticon-magnifier-right:before {
+  content: "\EA1E"
+}
+
+%collecticon-map {
+  @extend %collecticon;
+  content: "\EA1F"
+}
+.collecticon-map:before {
+  content: "\EA1F"
+}
+
+%collecticon-marker {
+  @extend %collecticon;
+  content: "\EA20"
+}
+.collecticon-marker:before {
+  content: "\EA20"
+}
+
+%collecticon-minus {
+  @extend %collecticon;
+  content: "\EA21"
+}
+.collecticon-minus:before {
+  content: "\EA21"
+}
+
+%collecticon-page-cog {
+  @extend %collecticon;
+  content: "\EA22"
+}
+.collecticon-page-cog:before {
+  content: "\EA22"
+}
+
+%collecticon-pages {
+  @extend %collecticon;
+  content: "\EA23"
+}
+.collecticon-pages:before {
+  content: "\EA23"
+}
+
+%collecticon-pencil {
+  @extend %collecticon;
+  content: "\EA24"
+}
+.collecticon-pencil:before {
+  content: "\EA24"
+}
+
+%collecticon-plus {
+  @extend %collecticon;
+  content: "\EA25"
+}
+.collecticon-plus:before {
+  content: "\EA25"
+}
+
+%collecticon-road {
+  @extend %collecticon;
+  content: "\EA26"
+}
+.collecticon-road:before {
+  content: "\EA26"
+}
+
+%collecticon-share {
+  @extend %collecticon;
+  content: "\EA27"
+}
+.collecticon-share:before {
+  content: "\EA27"
+}
+
+%collecticon-sm-chevron-down-trail {
+  @extend %collecticon;
+  content: "\EA28"
+}
+.collecticon-sm-chevron-down-trail:before {
+  content: "\EA28"
+}
+
+%collecticon-sm-chevron-down {
+  @extend %collecticon;
+  content: "\EA29"
+}
+.collecticon-sm-chevron-down:before {
+  content: "\EA29"
+}
+
+%collecticon-sm-chevron-left {
+  @extend %collecticon;
+  content: "\EA2A"
+}
+.collecticon-sm-chevron-left:before {
+  content: "\EA2A"
+}
+
+%collecticon-sm-chevron-right {
+  @extend %collecticon;
+  content: "\EA2B"
+}
+.collecticon-sm-chevron-right:before {
+  content: "\EA2B"
+}
+
+%collecticon-sm-chevron-up-trail {
+  @extend %collecticon;
+  content: "\EA2C"
+}
+.collecticon-sm-chevron-up-trail:before {
+  content: "\EA2C"
+}
+
+%collecticon-sm-chevron-up {
+  @extend %collecticon;
+  content: "\EA2D"
+}
+.collecticon-sm-chevron-up:before {
+  content: "\EA2D"
+}
+
+%collecticon-sm-equal {
+  @extend %collecticon;
+  content: "\EA2E"
+}
+.collecticon-sm-equal:before {
+  content: "\EA2E"
+}
+
+%collecticon-sm-minus {
+  @extend %collecticon;
+  content: "\EA2F"
+}
+.collecticon-sm-minus:before {
+  content: "\EA2F"
+}
+
+%collecticon-sm-plus {
+  @extend %collecticon;
+  content: "\EA30"
+}
+.collecticon-sm-plus:before {
+  content: "\EA30"
+}
+
+%collecticon-sm-tick {
+  @extend %collecticon;
+  content: "\EA31"
+}
+.collecticon-sm-tick:before {
+  content: "\EA31"
+}
+
+%collecticon-sm-triangle-down {
+  @extend %collecticon;
+  content: "\EA32"
+}
+.collecticon-sm-triangle-down:before {
+  content: "\EA32"
+}
+
+%collecticon-sm-triangle-left {
+  @extend %collecticon;
+  content: "\EA33"
+}
+.collecticon-sm-triangle-left:before {
+  content: "\EA33"
+}
+
+%collecticon-sm-triangle-right {
+  @extend %collecticon;
+  content: "\EA34"
+}
+.collecticon-sm-triangle-right:before {
+  content: "\EA34"
+}
+
+%collecticon-sm-triangle-up {
+  @extend %collecticon;
+  content: "\EA35"
+}
+.collecticon-sm-triangle-up:before {
+  content: "\EA35"
+}
+
+%collecticon-sm-xmark {
+  @extend %collecticon;
+  content: "\EA36"
+}
+.collecticon-sm-xmark:before {
+  content: "\EA36"
+}
+
+%collecticon-sort-asc {
+  @extend %collecticon;
+  content: "\EA37"
+}
+.collecticon-sort-asc:before {
+  content: "\EA37"
+}
+
+%collecticon-sort-desc {
+  @extend %collecticon;
+  content: "\EA38"
+}
+.collecticon-sort-desc:before {
+  content: "\EA38"
+}
+
+%collecticon-sort-none {
+  @extend %collecticon;
+  content: "\EA39"
+}
+.collecticon-sort-none:before {
+  content: "\EA39"
+}
+
+%collecticon-sort {
+  @extend %collecticon;
+  content: "\EA3A"
+}
+.collecticon-sort:before {
+  content: "\EA3A"
+}
+
+%collecticon-star-full {
+  @extend %collecticon;
+  content: "\EA3B"
+}
+.collecticon-star-full:before {
+  content: "\EA3B"
+}
+
+%collecticon-text-block {
+  @extend %collecticon;
+  content: "\EA3C"
+}
+.collecticon-text-block:before {
+  content: "\EA3C"
+}
+
+%collecticon-tick {
+  @extend %collecticon;
+  content: "\EA3D"
+}
+.collecticon-tick:before {
+  content: "\EA3D"
+}
+
+%collecticon-trash-bin {
+  @extend %collecticon;
+  content: "\EA3E"
+}
+.collecticon-trash-bin:before {
+  content: "\EA3E"
+}
+
+%collecticon-triangle-down {
+  @extend %collecticon;
+  content: "\EA3F"
+}
+.collecticon-triangle-down:before {
+  content: "\EA3F"
+}
+
+%collecticon-triangle-left {
+  @extend %collecticon;
+  content: "\EA40"
+}
+.collecticon-triangle-left:before {
+  content: "\EA40"
+}
+
+%collecticon-triangle-right {
+  @extend %collecticon;
+  content: "\EA41"
+}
+.collecticon-triangle-right:before {
+  content: "\EA41"
+}
+
+%collecticon-triangle-up {
+  @extend %collecticon;
+  content: "\EA42"
+}
+.collecticon-triangle-up:before {
+  content: "\EA42"
+}
+
+%collecticon-user {
+  @extend %collecticon;
+  content: "\EA43"
+}
+.collecticon-user:before {
+  content: "\EA43"
+}
+
+%collecticon-xmark {
+  @extend %collecticon;
+  content: "\EA44"
+}
+.collecticon-xmark:before {
+  content: "\EA44"
+}

@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Projects: Single
+   ========================================================================== */
+
+/* Project setup blocks
+   ========================================================================== */
+
+.psb-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  .psb {
+    @include column(6/12, $cycle: 2);
+    margin-top: $global-spacing * 2;
+    display: flex;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+}
+
+.psb {
+  .card__contents {
+    position: relative;
+    padding: ($global-spacing * 2) ($global-spacing * 2) ($global-spacing * 2) ($global-spacing * 5);
+
+    &::before {
+      position: absolute;
+      left: $global-spacing * 2;
+      font-size: 2rem;
+      opacity: 0.32;
+    }
+
+    &::after {
+      @extend %collecticon-sm-tick;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+      color: #fff;
+      text-align: right;
+      background: linear-gradient(135deg, transparent 50%, $success-color 0);
+      padding: 0.5rem;
+      pointer-events: none;
+      opacity: 0.32;
+      transition: opacity 0.24s ease 0s;
+      backface-visibility: hidden;
+    }
+  }
+}
+
+.psb--complete .card__contents::after {
+  opacity: 1;
+}
+
+.psb--profile .card__contents::before {
+  @extend %collecticon-page-cog;
+}
+
+.psb--origins .card__contents::before {
+  @extend %collecticon-houses;
+}
+
+.psb--admin-bounds .card__contents::before {
+  @extend %collecticon-fence;
+}
+
+.psb--road-network .card__contents::before {
+  @extend %collecticon-road;
+}
+
+.psb--poi .card__contents::before {
+  @extend %collecticon-marker;
+}
+
+.psb-group {
+  @extend %card-skin;
+
+  .psb {
+    overflow: hidden;
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 4rem;
+      height: 1px;
+      width: 100%;
+      background: $base-alpha-color;
+    }
+
+    .card__contents {
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: $global-spacing $global-spacing $global-spacing ($global-spacing * 4);
+
+      &::before {
+        left: $global-spacing;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+
+/* Diptych
+   ========================================================================== */
+
+.diptych {
+  @include column(6/12);
+  margin-top: $global-spacing * 2;
+
+  &:nth-child(1),
+  &:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .inpage__section-title {
+    text-align: left;
+  }
+}
+
+.diptych--col4 {
+  @include column(4/12);
+}
+
+.diptych--col8 {
+  @include column(8/12);
+}
+
+
+/* Scenarios list
+   ========================================================================== */
+
+.scenarios-card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  > li {
+    @include column(6/12, $cycle: 2);
+    margin-top: $global-spacing;
+    display: flex;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+
+  .card,
+  .card__contents {
+     width: 100%;
+  }
+}

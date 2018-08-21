@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Global: Page
+   ========================================================================== */
+
+.page {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* Header
+   ========================================================================== */
+
+.page__header {
+  @extend .antialiased;
+  position: relative;
+  z-index: 1;
+  background: $accent-color;
+  color: #fff;
+  padding: ($global-spacing * 1.5) 0;
+  box-shadow: 0 16px 20px 0 rgba($base-color, 0.08);
+
+  a {
+    color: inherit;
+    display: inline-block;
+  }
+
+  > .inner {
+    @extend .row, .row--centered;
+  }
+}
+
+.page__headline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.25rem;
+}
+
+.page__title {
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+  margin: 0;
+}
+
+.nav-language-switcher {
+  float: left;
+  line-height: 1rem;
+
+  .drop__toggle {
+    text-transform: uppercase;
+    font-weight: $base-font-bold;
+    font-size: 0.75rem;
+    vertical-align: top;
+  }
+
+  .active {
+    opacity: 0.64;
+  }
+}
+
+
+/* Global menu */
+
+.nav-global-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-weight: $base-font-bold;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  float: right;
+
+  a {
+    color: inherit;
+    display: inline-block;
+  }
+
+  > li {
+    float: left;
+    margin: 0 $global-spacing;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+/* Body
+   ========================================================================== */
+
+.page__body {
+  @extend .clearfix;
+  flex: 1;
+}
+
+
+/* Footer
+   ========================================================================== */
+
+.page__footer {
+  padding: 2rem 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: tint($base-color, 64%);
+  background: rgba($base-color, 0.04);
+
+  small {
+    font-size: inherit;
+    display: block;
+  }
+
+  > .inner {
+    @extend .row, .row--centered;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page__footer-nav {
+  @include column(6/12);
+  @include move(6/12);
+}
+
+.footer-credits {
+  @include column(6/12);
+  @include move(-6/12);
+}
