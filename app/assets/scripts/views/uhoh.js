@@ -7,7 +7,7 @@ export default class UhOh extends React.Component {
   render () {
     return (
       <App className='page--uhoh'>
-        <section className='inpage inpage--uhoh'>
+        <article className='inpage inpage--uhoh'>
           <header className='inpage__header'>
             <div className='inner'>
               <div className='inpage__headline'>
@@ -22,7 +22,7 @@ export default class UhOh extends React.Component {
               </div>
             </div>
           </div>
-        </section>
+        </article>
       </App>
     )
   }

@@ -24,7 +24,7 @@ class Project extends React.Component {
 
     return (
       <App>
-        <section className='inpage inpage--project'>
+        <article className='inpage inpage--project'>
           <header className='inpage__header'>
             <div className='inner'>
               <div className='inpage__headline'>
@@ -33,13 +33,27 @@ class Project extends React.Component {
             </div>
           </header>
           <div className='inpage__body'>
-            <div className='inner'>
-              <div className='prose prose--responsive'>
-                <Markdown source={data.__content} />
+            <div className='inner inlay'>
+              <aside className='inlay__aside'>
+                <h1 className='inlay__title'>Details</h1>
+                <dl className='inlay__details'>
+                  <dt>Key 1</dt>
+                  <dd>Value 1</dd>
+                  <dt>Key 2</dt>
+                  <dd>Value 2</dd>
+                  <dt>Key 3</dt>
+                  <dd>Value 3</dd>
+                </dl>
+              </aside>
+              <div className='inlay__main'>
+                <h1 className='inlay__title'>Details</h1>
+                <div className='prose'>
+                  <Markdown source={data.__content} />
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </article>
       </App>
     )
   }

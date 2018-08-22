@@ -24,7 +24,7 @@ class StaticPage extends React.Component {
 
     return (
       <App>
-        <section className='inpage inpage--static'>
+        <article className='inpage inpage--static'>
           <header className='inpage__header'>
             <div className='inner'>
               <div className='inpage__headline'>
@@ -39,7 +39,7 @@ class StaticPage extends React.Component {
               </div>
             </div>
           </div>
-        </section>
+        </article>
       </App>
     )
   }
