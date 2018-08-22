@@ -30,16 +30,31 @@ class Home extends React.Component {
             </div>
           </header>
           <div className='inpage__body'>
-            <ul>
-              {data.index.map(project => (
-                <li key={project.id}>
-                  <article>
-                    <h1><Link to={`/projects/${project.id}`}>{project.title}</Link></h1>
-                    <p>{project.description || 'No description'}</p>
-                  </article>
-                </li>
-              ))}
-            </ul>
+            <div className='inner'>
+              <ol className='projects-card-list'>
+                {data.index.map(project => (
+                  <li key={project.id}>
+                    <article className='project project--card card' id='project-1'>
+                      <div className='card__contents'>
+                        <header className='card__header'>
+                          <div className='card__headline'>
+                            <Link to={`/projects/${project.id}`} title='View project' className='link-wrapper'>
+                              <h1 className='card__title'>{project.title}</h1>
+                            </Link>
+                            <p className='card__subtitle'>Date, Countries, Topics</p>
+                          </div>
+                        </header>
+                        <div className='card__body'>
+                          <div className='card__summary'>
+                            <p>{project.description || 'No description'}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
       </App>

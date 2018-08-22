@@ -145,10 +145,6 @@ a.card__contents {
   flex: 1;
   width: 100%;
   margin-bottom: $global-spacing;
-
-  > *:last-child {
-    margin-bottom: 0;
-  }
 }
 
 .card__summary {
@@ -158,6 +154,10 @@ a.card__contents {
 
   > *:last-child {
     margin-bottom: 0;
+  }
+
+  &:last-child {
+    margin-bottom: $global-spacing / 2;
   }
 }
 
@@ -171,7 +171,7 @@ a.card__contents {
 
   > *:last-child {
     margin-bottom: 0;
-  } 
+  }
 }
 
 
