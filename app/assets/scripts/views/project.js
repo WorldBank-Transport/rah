@@ -24,7 +24,7 @@ class Project extends React.Component {
 
     return (
       <App>
-        <section className='inpage inpage--storms'>
+        <section className='inpage inpage--project'>
           <header className='inpage__header'>
             <div className='inner'>
               <div className='inpage__headline'>

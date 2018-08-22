@@ -16,6 +16,10 @@ export default class PageHeader extends React.PureComponent {
           </div>
           <nav className='page__prime-nav nav' role='navigation'>
             <div className='nav__block nav__block--global'>
+              <ul className='nav-global-menu'>
+                <li><a title='Visit page' href='#' className='nav-global-menu__link nav-global-menu__link--active'><span>Catalog</span></a></li>
+                <li><a title='Visit page' href='#' className='nav-global-menu__link'><span>About</span></a></li>
+              </ul>
             </div>
           </nav>
         </div>
