@@ -8,8 +8,42 @@
   }
 }
 
+
 /* Projects list
    ========================================================================== */
+
+.projects-sec {
+  margin-bottom: $global-spacing * 2;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.projects-sec__header {
+  margin-bottom: $global-spacing * 2;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.projects-sec__title {
+  @extend .visually-hidden;
+}
+
+.projects-sec__body {
+  margin-bottom: $global-spacing * 2;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.projects-sec__footer {
+  text-align: center;
+  vertical-align: top;
+}
 
 .projects-card-list {
   list-style: none;
