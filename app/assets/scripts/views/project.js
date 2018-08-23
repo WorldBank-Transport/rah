@@ -34,6 +34,12 @@ class Project extends React.Component {
           </header>
           <div className='inpage__body'>
             <div className='inner inlay'>
+              <figure className='inlay__media'>
+                <figcaption>
+                  Map will appear here.
+                </figcaption>
+              </figure>
+
               <aside className='inlay__aside'>
                 <h1 className='inlay__title'>Details</h1>
                 <dl className='inlay__details'>
@@ -45,8 +51,9 @@ class Project extends React.Component {
                   <dd>Value 3</dd>
                 </dl>
               </aside>
+
               <div className='inlay__main'>
-                <h1 className='inlay__title'>Details</h1>
+                <h1 className='inlay__title'>Description</h1>
                 <div className='prose'>
                   <Markdown source={data.__content} />
                 </div>

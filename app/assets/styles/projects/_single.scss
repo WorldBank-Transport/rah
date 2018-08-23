@@ -4,6 +4,15 @@
 
 .inlay {}
 
+.inlay__media {
+  @include column(12/12);
+  background: $base-alpha-color;
+  border-radius: $base-border-radius;
+  padding: $global-spacing * 2;
+  text-align: center;
+  margin: 0 0 ($global-spacing * 2) 0;
+}
+
 .inlay__aside {
   @include column(4/12);
 }

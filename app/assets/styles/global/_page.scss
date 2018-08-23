@@ -16,12 +16,7 @@
   @extend .antialiased;
   position: relative;
   z-index: 1;
-  padding: ($global-spacing * 2) 0 0 0;
-
-  a {
-    display: block;
-    color: inherit;
-  }
+  padding: ($global-spacing * 2) 0;
 
   > .inner {
     @extend .row, .row--centered;
@@ -34,6 +29,11 @@
   font-size: 1.5rem;
   line-height: 2rem;
   margin: 0;
+
+  a {
+    display: block;
+    color: inherit;
+  }
 }
 
 .page__subtitle {
@@ -58,10 +58,25 @@
   display: flex;
   justify-content: flex-end;
   flex: 1 1 auto;
+
+  a.nav-global-menu__link {
+    &::before {
+      background: $link-color;
+    }
+
+    &--active {
+      color: $link-color;
+
+      &::before {
+        width: 2rem;
+      }
+    }
+  }
 }
 
 
-/* Global menu */
+/* Global menu
+   ========================================================================== */
 
 .nav-global-menu {
   list-style: none;
@@ -89,6 +104,9 @@
 
 a.nav-global-menu__link {
   position: relative;
+  line-height: 2rem;
+  display: block;
+  color: inherit;
 
   &::before {
     position: absolute;
@@ -96,15 +114,12 @@ a.nav-global-menu__link {
     left: 0;
     height: 2px;
     width: 0;
-    background: $link-color;
     content: '';
     border-radius: $base-border-radius;
     transition: all 0.32s ease-in-ou 0s;
   }
 
   &--active {
-    color: $link-color;
-
     &::before {
       width: 2rem;
     }
@@ -138,19 +153,31 @@ a.nav-global-menu__link {
 
   > .inner {
     @extend .row, .row--centered;
-  }
-
-  *:last-child {
-    margin-bottom: 0;
+    display: flex;
+    flex-flow: row nowrap;
   }
 }
 
 .page__footer-nav {
-  @include column(6/12);
-  @include move(6/12);
+  flex: 1 1 auto;
+  order: 2;
+  display: flex;
+  justify-content: flex-end;
+
+  .nav-global-menu__link {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+
+    &::before {
+      background: tint($base-color, 64%);
+    }
+  }
 }
 
 .footer-credits {
-  @include column(6/12);
-  @include move(-6/12);
+  order: 1;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
 }
