@@ -24,3 +24,37 @@
 .inlay__title {
   @include heading(1.25rem);
 }
+
+
+/* Share menu
+   ========================================================================== */
+
+.share-menu {
+  .form__control {
+    font-size: 0.75rem;
+  }
+}
+
+.share-button {
+  @extend .button, .button--primary-raised-light;
+
+  &::before {
+    @extend %collecticon-share;
+  }
+}
+
+.share-facebook::before {
+  @extend %collecticon-brand-facebook;
+}
+
+.share-twitter::before {
+  @extend %collecticon-brand-twitter;
+}
+
+.share-copy {
+  @extend .button, .button--primary-raised-dark, .button--text-hidden;
+
+  &::before {
+    @extend %collecticon-clipboard-list;
+  }
+}

@@ -16,7 +16,7 @@
   @extend .antialiased;
   position: relative;
   z-index: 1;
-  padding: ($global-spacing * 2) 0;
+  padding: ($global-spacing * 2) 0 0 0;
 
   > .inner {
     @extend .row, .row--centered;

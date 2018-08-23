@@ -7,7 +7,7 @@
     @extend .antialiased;
     position: relative;
     z-index: 3;
-    padding: ($global-spacing * 2) 0;
+    padding: ($global-spacing * 2) 0 0 0;
 
     > .inner {
       @extend .row, .row--centered;
@@ -160,9 +160,8 @@
 }
 
 .ipa-ellipsis,
-.ipa-download,
 .ipa-pencil {
-   @extend .button--achromic;
+  @extend .button--achromic;
 }
 
 .ipa-ellipsis {
