@@ -112,6 +112,8 @@ function dispatcher (dispatch) {
   }
 }
 
+export default connect(mapStateToProps, dispatcher)(Project)
+
 // This needs to be a separate class because of the mount and unmount methods.
 // The dropdown unmounts when closed and the refs would be lost otherwise.
 class CopyField extends React.Component {
@@ -160,5 +162,3 @@ if (environment !== 'production') {
     value: T.string
   }
 }
-
-export default connect(mapStateToProps, dispatcher)(Project)
