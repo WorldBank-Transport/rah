@@ -6,7 +6,7 @@ import get from 'lodash.get'
 import Markdown from 'react-markdown'
 import formatDate from 'date-fns/format'
 
-import { environment } from '../config'
+import { environment, baseurl } from '../config'
 import { fetchPage } from '../actions'
 import countries from '../utils/countries'
 
@@ -65,7 +65,7 @@ class Project extends React.Component {
               </div>
               <div className='inpage__actions'>
                 <Share />
-                <a href='#' className='ipa-download ipa-main' title='Download'><span>Download</span></a>
+                <a href={`${baseurl}/assets/content/projects/${this.props.match.params.id}/results.zip`} className='ipa-download ipa-main' title='Download'><span>Download</span></a>
               </div>
             </div>
           </header>
