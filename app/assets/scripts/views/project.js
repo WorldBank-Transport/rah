@@ -4,14 +4,13 @@ import { PropTypes as T } from 'prop-types'
 import { connect } from 'react-redux'
 import get from 'lodash.get'
 import Markdown from 'react-markdown'
-import Dropdown from '../components/dropdown'
-import Clipboard from 'clipboard'
 
 import { environment } from '../config'
 import { fetchPage } from '../actions'
 
 import App from './app'
 import UhOh from './uhoh'
+import Share from '../components/share'
 
 class Project extends React.Component {
   componentDidMount () {
@@ -20,7 +19,6 @@ class Project extends React.Component {
 
   render () {
     const {error, data} = this.props.project
-    const url = window.location.toString()
 
     if (error) {
       return <UhOh />
@@ -35,25 +33,7 @@ class Project extends React.Component {
                 <h1 className='inpage__title'>{data.title}</h1>
               </div>
               <div className='inpage__actions'>
-                <Dropdown
-                  className='share-menu'
-                  triggerClassName='share-button'
-                  triggerActiveClassName='button--active'
-                  triggerText='Share'
-                  triggerTitle='Toggle share options'
-                  direction='down'
-                  alignment='right' >
-
-                  <h6 className='drop__title'>Share</h6>
-                  <ul className='drop__menu drop__menu--iconified'>
-                    <li><a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} className='drop__menu-item share-facebook' title='Share on Facebook' target='_blank'><span>Facebook</span></a></li>
-                    <li><a href={`https://twitter.com/intent/tweet?url=${url}`} className='drop__menu-item share-twitter' title='Share on Twitter' target='_blank'><span>Twitter</span></a></li>
-                  </ul>
-                  <div className='drop__inset'>
-                    <CopyField value={url} />
-                  </div>
-
-                </Dropdown>
+                <Share />
                 <a href='#' className='ipa-download ipa-main' title='Download'><span>Download</span></a>
               </div>
             </div>
@@ -113,52 +93,3 @@ function dispatcher (dispatch) {
 }
 
 export default connect(mapStateToProps, dispatcher)(Project)
-
-// This needs to be a separate class because of the mount and unmount methods.
-// The dropdown unmounts when closed and the refs would be lost otherwise.
-class CopyField extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      copiedMsg: false
-    }
-    this.triggerEl = null
-    this.copiedMsgTimeout = null
-  }
-
-  componentDidMount () {
-    this.clipboard = new Clipboard(this.triggerEl, {
-      text: () => this.props.value
-    })
-
-    this.clipboard.on('success', e => {
-      this.setState({copiedMsg: true})
-      this.copiedMsgTimeout = setTimeout(() => {
-        this.setState({copiedMsg: false})
-      }, 2000)
-    })
-  }
-
-  componentWillUnmount () {
-    this.clipboard.destroy()
-    if (this.copiedMsgTimeout) clearTimeout(this.copiedMsgTimeout)
-  }
-
-  render () {
-    const val = this.state.copiedMsg ? 'Copied!' : this.props.value
-    return (
-      <form action='#' className='form'>
-        <div className='form__input-group'>
-          <input id='site-url' name='site-url' className='form__control' type='text' readOnly value={val} />
-          <button type='button' className='share-copy' title='Copy to clipboard' ref={el => { this.triggerEl = el }}><span>Copy to clipboard</span></button>
-        </div>
-      </form>
-    )
-  }
-}
-
-if (environment !== 'production') {
-  CopyField.propTypes = {
-    value: T.string
-  }
-}

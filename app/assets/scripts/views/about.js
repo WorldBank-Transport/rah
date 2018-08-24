@@ -2,6 +2,7 @@
 import React from 'react'
 
 import App from './app'
+import Share from '../components/share'
 
 export default class About extends React.Component {
   render () {
@@ -12,6 +13,9 @@ export default class About extends React.Component {
             <div className='inner'>
               <div className='inpage__headline'>
                 <h1 className='inpage__title'>About</h1>
+              </div>
+              <div className='inpage__actions'>
+                <Share />
               </div>
             </div>
           </header>
