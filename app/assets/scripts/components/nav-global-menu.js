@@ -1,10 +1,8 @@
 'use strict'
 import React from 'react'
-import { PropTypes as T } from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
 class NavGlobalMenu extends React.Component {
-
   render () {
     return (
       <div className='nav__block nav__block--global'>
@@ -13,8 +11,8 @@ class NavGlobalMenu extends React.Component {
           <li><NavLink to='/about' title='View about page' className='nav-global-menu__link' activeClassName='nav-global-menu__link--active'><span>About</span></NavLink></li>
         </ul>
       </div>
-    );
+    )
   }
 }
 
-export default NavGlobalMenu;
+export default NavGlobalMenu
