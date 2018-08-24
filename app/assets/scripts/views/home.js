@@ -151,7 +151,7 @@ class Home extends React.Component {
                           <ProjectCard
                             id={project.id}
                             title={project.title}
-                            description={project.description}
+                            excerpt={project.excerpt}
                             date={project.date}
                             country={project.country}
                             topics={project.topics}
@@ -318,7 +318,7 @@ if (environment !== 'production') {
 //
 class ProjectCard extends React.PureComponent {
   render () {
-    const {date, country, topics, id, title, description} = this.props
+    const {date, country, topics, id, title, excerpt} = this.props
     let subtitle = []
 
     if (date) {
@@ -352,7 +352,7 @@ class ProjectCard extends React.PureComponent {
           </header>
           <div className='card__body'>
             <div className='card__summary'>
-              <p>{description || 'No description'}</p>
+              <p>{excerpt || 'No description'}</p>
             </div>
           </div>
         </div>
@@ -368,6 +368,6 @@ if (environment !== 'production') {
     topics: T.array,
     id: T.string,
     title: T.string,
-    description: T.string
+    excerpt: T.string
   }
 }

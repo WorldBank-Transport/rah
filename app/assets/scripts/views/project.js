@@ -1,12 +1,14 @@
 'use strict'
-import React from 'react'
+import React, { Fragment } from 'react'
 import { PropTypes as T } from 'prop-types'
 import { connect } from 'react-redux'
 import get from 'lodash.get'
 import Markdown from 'react-markdown'
+import formatDate from 'date-fns/format'
 
 import { environment } from '../config'
 import { fetchPage } from '../actions'
+import countries from '../utils/countries'
 
 import App from './app'
 import UhOh from './uhoh'
@@ -17,8 +19,37 @@ class Project extends React.Component {
     this.props.fetchPage('project', this.props.match.params.id)
   }
 
+  renderDetails () {
+    const date = this.props.project.data.date
+    const country = get(this.props.project.data, 'country', '')
+    const topics = get(this.props.project.data, 'topics', [])
+    const authors = get(this.props.project.data, 'authors', [])
+
+    const ctr = get(countries.find(c => c.code === country.toUpperCase()), 'name', 'N/A')
+    const tpc = topics.length ? topics.join(', ') : 'N/A'
+    const aut = authors.length ? authors.join(', ') : 'N/A'
+
+    return (
+      <Fragment>
+        <h1 className='inlay__title'>Details</h1>
+        <dl className='inlay__details'>
+          <dt>Date</dt>
+          <dd>{formatDate(date, 'MMM Do YYYY')}</dd>
+          <dt>Country</dt>
+          <dd>{ctr}</dd>
+          <dt>Topics</dt>
+          <dd>{tpc}</dd>
+          <dt>Authors</dt>
+          <dd>{aut}</dd>
+        </dl>
+      </Fragment>
+    )
+  }
+
   render () {
-    const {error, data} = this.props.project
+    const {fetched, fetching, error, data} = this.props.project
+
+    if (!fetched || fetching) return null
 
     if (error) {
       return <UhOh />
@@ -47,15 +78,7 @@ class Project extends React.Component {
               </figure>
 
               <aside className='inlay__aside'>
-                <h1 className='inlay__title'>Details</h1>
-                <dl className='inlay__details'>
-                  <dt>Key 1</dt>
-                  <dd>Value 1</dd>
-                  <dt>Key 2</dt>
-                  <dd>Value 2</dd>
-                  <dt>Key 3</dt>
-                  <dd>Value 3</dd>
-                </dl>
+                {this.renderDetails()}
               </aside>
 
               <div className='inlay__main'>

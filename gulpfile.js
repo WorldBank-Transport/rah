@@ -24,6 +24,8 @@ const historyApiFallback = require('connect-history-api-fallback')
 const through = require('through2')
 const safeLoadFront = require('yaml-front-matter').safeLoadFront
 const kebabcase = require('lodash.kebabcase')
+const MarkdownIt = require('markdown-it')
+const stripTags = require('striptags')
 
 // /////////////////////////////////////////////////////////////////////////////
 // --------------------------- Variables -------------------------------------//
@@ -310,6 +312,12 @@ function createPorjectsIndex (name) {
     // app/assets/content/projects/project-1/index.md -> project-1
     const pieces = file.path.split('/')
     content.id = pieces[pieces.length - 2]
+
+    // Create a 140 character excerpt.
+    const md = new MarkdownIt()
+    const excerpt = stripTags(md.render(content.__content)).substring(0, 137) + '...'
+    content.excerpt = excerpt
+
     // The file content is not needed for the cards.
     delete content.__content
     index.push(content)
