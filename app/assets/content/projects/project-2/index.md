@@ -3,6 +3,8 @@ title: Lao Road Sector Project 2
 authors:
   - Holly Krambeck
   - Sombath Southivong
+country: PT
+date: 2017/05/15
 description: Accessibility analysis performed by Holly Krambeck and Sombath Southivong using RAM, based on data available on OpenStreetMap.
 ---
 
