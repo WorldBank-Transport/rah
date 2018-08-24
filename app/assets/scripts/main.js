@@ -11,7 +11,6 @@ import history from './utils/history'
 import Home from './views/home'
 import StaticPage from './views/static-page'
 import Project from './views/project'
-import About from './views/about'
 import UhOh from './views/uhoh'
 
 // Root component. Used by the router.
@@ -20,7 +19,6 @@ const Root = () => (
     <Router history={history}>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route exact path='/about' component={About}/>
         <Route path='/projects/:id' component={Project}/>
         <Route exact path='/:page' component={StaticPage}/>
         <Route path='*' component={UhOh} />

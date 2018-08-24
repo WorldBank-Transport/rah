@@ -10,6 +10,7 @@ import { fetchPage } from '../actions'
 
 import App from './app'
 import UhOh from './uhoh'
+import Share from '../components/share'
 
 class StaticPage extends React.Component {
   componentDidMount () {
@@ -29,6 +30,9 @@ class StaticPage extends React.Component {
             <div className='inner'>
               <div className='inpage__headline'>
                 <h1 className='inpage__title'>{data.title}</h1>
+              </div>
+              <div className='inpage__actions'>
+                <Share />
               </div>
             </div>
           </header>
