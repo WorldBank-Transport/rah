@@ -34,10 +34,6 @@ jobs:
 
       - run: yarn test
 
-      - add_ssh_keys:
-          fingerprints:
-            - "ca:a3:f9:55:b8:a5:9b:79:f8:d4:6e:2d:84:ba:b2:fd"
-
       - run:
           name: Building site
           command: |
@@ -48,18 +44,11 @@ jobs:
             fi
 
       - run:
-          name: Deploy to GH Pages
+          name: Deploy to Surge
           command: |
             if [ "${CIRCLE_BRANCH}" == "${PRODUCTION_BRANCH}" ]; then
-              cd dist
-              git init
-              git config user.name "$GH_NAME"
-              git config user.email "$GH_EMAIL"
-              git add .
-              git commit -m "CI deploy [skip ci]"
-              git remote add origin $GH_REF
-              git push origin --force --quiet HEAD:gh-pages
-              rm -rf .git
+              cp ./dist/index.html ./dist/200.html
+              ./node_modules/surge/lib/cli.js --project ./dist --domain rah.surge.sh
             else
-              echo "Skip deploying to Github"
+              echo "Not the branch you're looking for, skipping deploy"
             fi

@@ -5,5 +5,5 @@ export default {
   appTitle: 'Rural Accessibility Hub',
   appSubtitle: 'Powered by Rural Accessibility Map',
   appDescription: 'No description yet.',
-  baseurl: 'http://localhost:3000'
+  baseurl: 'http://rah.surge.sh'
 }
