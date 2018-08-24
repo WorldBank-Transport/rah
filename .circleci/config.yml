@@ -48,6 +48,7 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "${PRODUCTION_BRANCH}" ]; then
               cp ./dist/index.html ./dist/200.html
+              echo '*' > ./dist/CORS
               ./node_modules/surge/lib/cli.js --project ./dist --domain rah.surge.sh
             else
               echo "Not the branch you're looking for, skipping deploy"
