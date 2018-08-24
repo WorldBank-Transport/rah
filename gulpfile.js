@@ -297,6 +297,11 @@ gulp.task('tags', function () {
 
 function createPorjectsIndex (name) {
   let index = []
+  let filters = {
+    years: [],
+    topics: [],
+    countries: []
+  }
 
   return through.obj(function (file, enc, cb) {
     let content = safeLoadFront(file.contents.toString('utf8'))
@@ -308,13 +313,29 @@ function createPorjectsIndex (name) {
     // The file content is not needed for the cards.
     delete content.__content
     index.push(content)
+
+    // Years
+    if (content.date) {
+      const year = (new Date(content.date)).getFullYear()
+      if (filters.years.indexOf(year) === -1) filters.years.push(year)
+    }
+    // Topics
+    (content.topics || []).forEach(topic => {
+      if (topic && filters.topics.indexOf(topic) === -1) {
+        filters.topics.push(topic)
+      }
+    })
+    // Countries
+    if (content.country && filters.countries.indexOf(content.country) === -1) {
+      filters.countries.push(content.country)
+    }
     cb()
   }, cb => {
     cb(null, new Vinyl({
       cwd: __dirname,
       base: path.join(__dirname, 'app/assets/content/projects'),
       path: path.join(__dirname, 'app/assets/content/projects', name),
-      contents: Buffer.from(JSON.stringify({index}))
+      contents: Buffer.from(JSON.stringify({index, filters}))
     }))
   })
 }
