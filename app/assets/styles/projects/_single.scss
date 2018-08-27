@@ -32,6 +32,20 @@
 
 .inlay__details {
   @extend .dl--table;
+
+  @include media(small-up) {
+    dt {
+      width: 32%;
+    }
+
+    dd {
+      width: 68%;
+    }
+
+    dd + dd {
+      margin-left: 68%;
+    }
+  }
 }
 
 
