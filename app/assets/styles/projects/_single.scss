@@ -15,10 +15,12 @@
 
 .inlay__aside {
   @include column(4/12);
+  @include move(8/12);
 }
 
 .inlay__main {
   @include column(8/12);
+  @include move(-4/12);
 }
 
 .inlay__title {
@@ -29,7 +31,7 @@
 }
 
 .inlay__details {
-  @extend .dl-horizontal;
+  @extend .dl--table;
 }
 
 
