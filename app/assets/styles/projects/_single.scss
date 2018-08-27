@@ -25,6 +25,10 @@
   @include heading(1.25rem);
 }
 
+.inlay__details {
+  @extend .dl-horizontal;
+}
+
 
 /* Share menu
    ========================================================================== */
