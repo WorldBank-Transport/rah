@@ -29,17 +29,18 @@
 /* Share menu
    ========================================================================== */
 
-.share-menu {
-  .form__control {
-    font-size: 0.75rem;
-  }
-}
-
 .share-button {
   @extend .button, .button--primary-raised-light;
 
   &::before {
     @extend %collecticon-share;
+  }
+}
+
+.share-menu {
+  .form__control {
+    font-size: 0.75rem;
+    padding-right: $global-spacing * 2;
   }
 }
 
@@ -52,7 +53,9 @@
 }
 
 .share-copy {
-  @extend .button, .button--primary-raised-dark, .button--text-hidden;
+  @extend .button, .button--primary-plain, .button--text-hidden;
+  border-radius: $base-border-radius !important;
+  margin-left: -$global-spacing * 2;
 
   &::before {
     @extend %collecticon-clipboard-list;
