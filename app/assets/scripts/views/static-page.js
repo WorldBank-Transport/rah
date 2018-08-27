@@ -38,7 +38,7 @@ class StaticPage extends React.Component {
           </header>
           <div className='inpage__body'>
             <div className='inner'>
-              <div className='prose prose--responsive'>
+              <div className='prose'>
                 <Markdown source={data.__content} />
               </div>
             </div>

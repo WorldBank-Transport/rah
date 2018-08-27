@@ -15,31 +15,55 @@
 
 .inlay__aside {
   @include column(4/12);
+  @include move(8/12);
 }
 
 .inlay__main {
   @include column(8/12);
+  @include move(-4/12);
 }
 
 .inlay__title {
-  @include heading(1.25rem);
+  @extend .heading-alt;
+  color: rgba($base-font-color, 0.64);
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+
+.inlay__details {
+  @extend .dl--table;
+
+  @include media(small-up) {
+    dt {
+      width: 32%;
+    }
+
+    dd {
+      width: 68%;
+    }
+
+    dd + dd {
+      margin-left: 68%;
+    }
+  }
 }
 
 
 /* Share menu
    ========================================================================== */
 
-.share-menu {
-  .form__control {
-    font-size: 0.75rem;
-  }
-}
-
 .share-button {
   @extend .button, .button--primary-raised-light;
 
   &::before {
     @extend %collecticon-share;
+  }
+}
+
+.share-menu {
+  .form__control {
+    font-size: 0.75rem;
+    padding-right: $global-spacing * 2;
   }
 }
 
@@ -52,7 +76,9 @@
 }
 
 .share-copy {
-  @extend .button, .button--primary-raised-dark, .button--text-hidden;
+  @extend .button, .button--primary-plain, .button--text-hidden;
+  border-radius: $base-border-radius !important;
+  margin-left: -$global-spacing * 2;
 
   &::before {
     @extend %collecticon-clipboard-list;
