@@ -17,7 +17,7 @@ export default class UhOh extends React.Component {
           </header>
           <div className='inpage__body'>
             <div className='inner'>
-              <div className='prose prose--responsive'>
+              <div className='prose'>
                 <p>The requested page does not exist or may have been removed.</p>
               </div>
             </div>

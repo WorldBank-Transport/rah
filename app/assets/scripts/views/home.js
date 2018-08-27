@@ -160,7 +160,9 @@ class Home extends React.Component {
                       ))}
                     </ol>
                   ) : (
-                    <p>No projects match your criteria. Please refine your search.</p>
+                    <div className='projects-sec__no-results'>
+                      <p>No projects match your criteria. Please refine your filters.</p>
+                    </div>
                   )}
                 </div>
 

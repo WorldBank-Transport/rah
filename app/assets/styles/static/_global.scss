@@ -1,8 +1,8 @@
 /* ==========================================================================
-   UhOh: Global
+   Static: Global
    ========================================================================== */
 
-.inpage--uhoh .inpage__header {
+.inpage--static .inpage__header {
   .inner {
     position: relative;
     padding-bottom: $global-spacing;
@@ -15,6 +15,7 @@
       height: 0.25rem;
       width: 4rem;
       background: $base-font-color;
+
       @include media(xlarge-up) {
         left: 2rem;
       }
@@ -22,16 +23,15 @@
   }
 }
 
-.inpage--uhoh .inpage__body {
+.inpage--static .inpage__body {
   .inner {
     min-height: $global-spacing * 24;
     display: flex;
     align-items: center;
-    text-align: center;
   }
 
   .prose {
-    @include column(8/12, $offset: 2/12);
+    @include column(8/12);
 
     > *:last-child {
       margin-bottom: 0;

@@ -89,3 +89,12 @@
     max-width: 128%;
   }
 }
+
+.projects-sec__no-results {
+  text-align: center;
+  padding: ($global-spacing * 4) $global-spacing;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
