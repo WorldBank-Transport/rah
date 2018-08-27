@@ -22,7 +22,10 @@
 }
 
 .inlay__title {
-  @include heading(1.25rem);
+  @extend .heading-alt;
+  color: rgba($base-font-color, 0.64);
+  font-size: 0.875rem;
+  line-height: 1rem;
 }
 
 .inlay__details {
