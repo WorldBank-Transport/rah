@@ -1,18 +1,19 @@
 ---
-title: Help
+title: About
 ---
 
-Nulla facilisi. In condimentum, ante nec congue pharetra, dolor arcu mollis justo, eget sollicitudin ligula urna quis sem. Donec finibus venenatis blandit. Duis metus lacus, facilisis eu faucibus sit amet, convallis in elit. Duis efficitur arcu at odio vehicula, sit amet blandit ante consectetur. Nam ultrices varius ex. Duis non ultricies libero. Ut non elementum purus. Suspendisse nec nunc ut enim cursus porttitor eu eget arcu. 
+The Rural Accessibility Hub is the place to showcase and share accessibility analysis generated using the [RAM toolset](http://ruralaccess.info/). The project is maintained through Github. If you have any questions, feel free to open a ticket in [the issue queue](https://github.com/WorldBank-Transport/rah/issues).
 
 ## FAQ
 
-Pellentesque non libero a ante finibus vehicula. Nulla quis consectetur mauris, ac blandit dui. Curabitur in tristique velit. 
+### How do I generate my own accessibility analysis?
+The analysis published on this website was generated using [RAM](http://ruralaccess.info/). If you don't have access to a RAM instance, you will have to run one yourself. Either locally on your own machine, or using cloud infrastructure like AWS.
 
-### Curabitur nulla ex, convallis quis dui pellentesque, interdum tempus ex?
-Nullam eu posuere massa. Donec eget ex commodo metus facilisis bibendum. Suspendisse blandit egestas arcu, a interdum elit placerat sit amet. Vestibulum ante ipsum primis in faucibus orci luctus et.
+### How do I publish analysis to this Hub?
+Once you've generated accessibility analysis in RAM, you will have the option to export the results to the Hub. During the export, you can provide more contextual information about the analysis.
 
-### Vivamus auctor est non leo efficitur lobortis?
-Curabitur eget ligula vel velit blandit mollis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque massa diam, efficitur ut tempus a, egestas eu tellus.
+### I've published analysis to the Hub, but it's not showing up on this site.
+Publishing analysis requires approval from the maintainer of RAH. You can check the list of projects that are [pending approval on Github](https://github.com/WorldBank-Transport/rah/pulls), and leave a comment to inquire about the status.
 
-### Nulla facilisi?
-In condimentum, ante nec congue pharetra, dolor arcu mollis justo, eget sollicitudin ligula urna quis sem. 
+### How does RAM measure accessibility?
+RAM calculates travel times between the origins and destinations that the user provides. The origins will often be settlements, and the destinations anything from hospitals or education facilities, to markets and town centers. For each origin, RAM will determine the closest POI and return the travel time.
