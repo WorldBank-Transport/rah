@@ -1,72 +1,13 @@
 # Rural Accessibility Hub
+This project is part of the [Rural Accessibility Map](http://ruralaccess.info). The RAM toolset is used to generate insight into the accessibility of rural populations. Once people generate analysis in their instance of RAM, they can export those results and share them with a wider public.
 
-Rural Accessibility Hub
+## Moderation guidelines
 
-## Installation and Usage
-
-The steps below will walk you through setting up your own instance of the project.
-
-### Install Project Dependencies
-To set up the development environment for this website, you'll need to install the following on your system:
-
-- [Node](http://nodejs.org/) v8 (To manage multiple node versions we recommend [nvm](https://github.com/creationix/nvm))
-- [Yarn](https://yarnpkg.com/) Package manager
-
-### Install Application Dependencies
-
-If you use [`nvm`](https://github.com/creationix/nvm), activate the desired Node version:
-
-```
-nvm install
-```
-
-Install Node modules:
-
-```
-yarn install
-```
-
-### Usage
-
-#### Config files
-All the config files can be found in `app/assets/scripts/config`.
-After installing the projects there will be 3 main files:
-  - `local.js` - Used only for local development. On production this file should not exist or be empty.
-  - `staging.js`
-  - `production.js`
-
-The `production.js` file serves as base and the other 2 will override it as needed:
-  - `staging.js` will be loaded whenever the env variable `DS_ENV` is set to staging.
-  - `local.js` will be loaded if it exists.
-
-The following options must be set: (The used file will depend on the context):
-  - `value` - Description
-
-Example:
-```
-module.exports = {
-  value: 'some-value'
-};
-```
-
-#### Starting the app
-
-```
-yarn serve
-```
-Compiles the sass files, javascript, and launches the server making the site available at `http://localhost:3000/`
-The system will watch files and execute tasks whenever one of them changes.
-The site will automatically refresh since it is bundled with livereload.
-
-# Deployment
-To prepare the app for deployment run:
-
-```
-yarn build
-```
-or
-```
-yarn stage
-```
-This will package the app and place all the contents in the `dist` directory.
-The app can then be run by any web server.
+1. when somebody exports data from RAM, [a Pull Request](https://github.com/WorldBank-Transport/rah/pulls) will be created  
+![](https://user-images.githubusercontent.com/751330/45245447-6f956600-b2ca-11e8-92ae-dc46320f0f7e.png)
+2. to view the meta-data of the project, look under the tab 'Files changed'  
+![](https://user-images.githubusercontent.com/751330/45245554-e3d00980-b2ca-11e8-8eba-bd72d68dadb1.png)
+3. when the project is ready to be published, choose to 'Merge pull request'. Once you hit the button, it should take a couple of minutes for the project to appear on the RAH.  
+![](https://user-images.githubusercontent.com/751330/45245436-61474a00-b2ca-11e8-9451-e89ec2209303.png)
+4. choose to 'Delete branch'  
+![](https://user-images.githubusercontent.com/751330/45245476-95bb0600-b2ca-11e8-8e8b-a1d3f2e85624.png)
