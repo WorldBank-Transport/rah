@@ -1,7 +1,12 @@
+'use script'
 import fetch from 'isomorphic-fetch'
 import { safeLoadFront } from 'yaml-front-matter'
 
 import config from '../config'
+
+// /////////////////////////////////////////////////////////////////////////////
+// Actions
+// /////////////////////////////////////////////////////////////////////////////
 
 export const REQUEST_PAGE = 'REQUEST_PAGE'
 export const RECEIVE_PAGE = 'RECEIVE_PAGE'
@@ -48,57 +53,48 @@ export function fetchPage (what, id) {
   }
 }
 
-//
-// Projects Index
+// /////////////////////////////////////////////////////////////////////////////
+// Reducer
+// /////////////////////////////////////////////////////////////////////////////
 
-export const REQUEST_PROJ_IDX = 'REQUEST_PROJ_IDX'
-export const RECEIVE_PROJ_IDX = 'RECEIVE_PROJ_IDX'
-export const INVALIDATE_PROJ_IDX = 'INVALIDATE_PROJ_IDX'
-
-export function invalidateProjectIndex () {
-  return { type: INVALIDATE_PROJ_IDX }
+const initialState = {
+  // pageId: {
+  //   fetching: false,
+  //   fetched: false,
+  //   data: {}
+  // }
 }
 
-export function requestProjectIndex () {
-  return { type: REQUEST_PROJ_IDX }
-}
+export default function reducer (state = initialState, action) {
+  switch (action.type) {
+    case INVALIDATE_PAGE:
+      const {[action.id]: _, ...rest} = state
+      return rest
+    case REQUEST_PAGE:
+      return {
+        ...state,
+        [action.id]: {
+          fetching: true,
+          fetched: false,
+          data: {}
+        }
+      }
+    case RECEIVE_PAGE:
+      state = {
+        ...state,
+        [action.id]: {
+          fetching: false,
+          fetched: true,
+          data: {}
+        }
+      }
 
-export function receiveProjectIndex (data, error = null) {
-  return { type: RECEIVE_PROJ_IDX, data, error, receivedAt: Date.now() }
-}
-
-export function fetchProjectIndex () {
-  return async function (dispatch, getState) {
-    const pageState = getState().projectIndex
-    if (pageState && pageState.fetched && !pageState.error) {
-      return dispatch(receiveProjectIndex(pageState.data))
-    }
-
-    dispatch(requestProjectIndex())
-
-    try {
-      const res = await fetchJSON(`${config.baseurl}/assets/content/projects.json`)
-      return dispatch(receiveProjectIndex(res))
-    } catch (error) {
-      return dispatch(receiveProjectIndex(null, error))
-    }
+      if (action.error) {
+        state[action.id].error = action.error
+      } else {
+        state[action.id].data = action.data
+      }
+      break
   }
-}
-
-export async function fetchJSON (url, options) {
-  try {
-    const response = await fetch(url, options)
-    const body = await response.text()
-
-    try {
-      return JSON.parse(body)
-    } catch (error) {
-      console.log('json parse error', error)
-      error.responseBody = body
-      throw error
-    }
-  } catch (error) {
-    console.log('fetchJSON error', error)
-    throw error
-  }
+  return state
 }

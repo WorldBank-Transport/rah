@@ -10,7 +10,7 @@ import { parse, stringify } from 'qs'
 import get from 'lodash.get'
 
 import { environment } from '../config'
-import { fetchProjectIndex } from '../actions'
+import { fetchProjectIndex } from '../redux/project-index'
 import countries from '../utils/countries'
 
 import App from './app'

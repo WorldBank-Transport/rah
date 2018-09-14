@@ -7,7 +7,7 @@ import Markdown from 'react-markdown'
 import formatDate from 'date-fns/format'
 
 import { environment, baseurl } from '../config'
-import { fetchPage } from '../actions'
+import { fetchPage } from '../redux/static-page'
 import countries from '../utils/countries'
 
 import App from './app'

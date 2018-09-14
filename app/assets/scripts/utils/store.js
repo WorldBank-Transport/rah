@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
 import config from '../config'
-import reducer from '../reducers'
+import reducer from '../redux'
 
 const initialState = {
 }
