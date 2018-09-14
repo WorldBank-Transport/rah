@@ -8,6 +8,7 @@ import { environment, appName, appDescription } from '../config'
 import PageHeader from '../components/page-header'
 import PageFooter from '../components/page-footer'
 import MetaTags from '../components/meta-tags'
+import { GlobalLoading } from '../components/global-loading'
 
 class App extends React.Component {
   render () {
@@ -34,6 +35,8 @@ class App extends React.Component {
           {this.props.children}
         </main>
         <PageFooter location={this.props.location} />
+
+        <GlobalLoading />
       </div>
     )
   }
