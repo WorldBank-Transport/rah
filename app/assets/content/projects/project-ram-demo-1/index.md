@@ -9,8 +9,9 @@ topics:
 contact:
   name: QL
   email: sample@sample.com
-
+published: true
+contact_name: QL
+contact_email: sample@sample.com
 ---
 
 This is a test for the RAH.
-        
