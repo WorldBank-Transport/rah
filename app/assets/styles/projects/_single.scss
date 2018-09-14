@@ -84,3 +84,181 @@
     @extend %collecticon-clipboard-list;
   }
 }
+
+
+/* Results: ETA Vis
+   ========================================================================== */
+
+  .eta-vis__map {
+  height: 32rem;
+}
+
+.eta-vis__legend {
+  position: absolute;
+  top: $global-spacing;
+  right: $global-spacing;
+  background: rgba(#fff, 0.80);
+  padding: $global-spacing;
+  border-radius: $base-border-radius;
+}
+
+.legend__block {
+  position: relative;
+
+  &:not(:last-child) {
+    padding-bottom: $global-spacing;
+    margin-bottom: $global-spacing;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: '';
+      background: $base-alpha-color;
+    }
+  }
+}
+
+.legend__title {
+  @extend .heading-alt;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-bottom: $global-spacing / 2;
+}
+
+.legend__dl {
+  padding: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  overflow: hidden;
+
+  dt, dd {
+    float: left;
+    padding: 0;
+    margin: 0 0 0.25rem 0;
+  }
+
+  dt {
+    position: relative;
+    height: 1.25rem;
+    width: 1.25rem;
+    font-size: 0;
+    clear: left;
+    margin-right: $global-spacing / 2;
+    opacity: 1;
+
+    &::before {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 50%;
+      content: '';
+      transform: translate(-50%, -50%);
+      background: $base-font-color;
+    }
+  }
+}
+
+.legend__dl--size {
+  .radius {
+    background: $base-alpha-color;
+    border-radius: $full-border-radius;
+
+    &::before {
+      border-radius: $full-border-radius;
+    }
+  }
+
+  .radius--xs::before {
+    height: 0.25rem;
+    width: 0.25rem;
+  }
+
+  .radius--s::before {
+    height: 0.5rem;
+    width: 0.5rem;
+  }
+
+  .radius--m::before {
+    height: 0.75rem;
+    width: 0.75rem;
+  }
+
+  .radius--l::before {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .radius--xl::before {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+}
+
+.legend__dl--colors {
+  .color {
+    &::before {
+      height: 0.5rem;
+      width: 100%;
+      border-radius: $base-border-radius;
+    }
+  }
+
+  .color--alpha::before {
+    background: #1a9850;
+  }
+
+  .color--beta::before {
+    background: #91cf60;
+  }
+
+  .color--gama::before {
+    background: #d9ef8b;
+  }
+
+  .color--delta::before {
+    background: #fee08b;
+  }
+
+  .color--epsilon::before {
+    background: #fc8d59;
+  }
+
+  .color--zeta::before {
+    background: #d73027;
+  }
+
+  .color--eta::before {
+    background: #4d4d4d;
+  }
+}
+
+.eta-vis__overlays-menu {
+  .form__option {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .form__option__text {
+    width: 12rem;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/**
+  * "etavb-" prefix stands for "eta vis button"
+  */
+
+[class^="etavb-"],
+[class*=" etavb-"] {
+  @extend .button, .button--primary-raised-light, .button--text-hidden;
+}
+
+.etavb-overlays::before {
+  @extend %collecticon-iso-stack;
+}

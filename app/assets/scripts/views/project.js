@@ -19,6 +19,7 @@ import App from './app'
 import UhOh from './uhoh'
 import Share from '../components/share'
 import Dropdown from '../components/dropdown'
+import ResultsMap from '../components/results-map'
 
 class Project extends React.Component {
   constructor (props) {
@@ -138,6 +139,10 @@ class Project extends React.Component {
           popInd={popIndicators}
           poiTypes={poiTypes}
           scenarios={scenarios}
+        />
+
+        <ResultsMap
+          bbox={bbox}
         />
       </Fragment>
     )
