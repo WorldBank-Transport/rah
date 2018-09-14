@@ -80,20 +80,20 @@ export default function reducer (state = initialState, action) {
         }
       }
     case RECEIVE_PAGE:
-      state = {
-        ...state,
-        [action.id]: {
-          fetching: false,
-          fetched: true,
-          data: {}
-        }
+      let st = {
+        fetching: false,
+        fetched: true,
+        data: {},
+        error: null
       }
 
       if (action.error) {
-        state[action.id].error = action.error
+        st.error = action.error
       } else {
-        state[action.id].data = action.data
+        st.data = action.data
       }
+
+      state = { ...state, [action.id]: st }
       break
   }
   return state

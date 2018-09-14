@@ -3,15 +3,10 @@
 export async function fetchJSON (url, options) {
   try {
     const response = await fetch(url, options)
-    const body = await response.text()
-
-    try {
-      return JSON.parse(body)
-    } catch (error) {
-      console.log('json parse error', error)
-      error.responseBody = body
-      throw error
-    }
+    console.log('url', url);
+    const json = await response.json()
+    console.log('json', json);
+    return json
   } catch (error) {
     console.log('fetchJSON error', error)
     throw error
