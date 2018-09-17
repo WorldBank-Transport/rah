@@ -37,7 +37,20 @@ export function fetchProjectPoi (projId, poiKey) {
 
     try {
       const res = await fetchJSON(`${config.baseurl}/assets/content/projects/${projId}/poi-${poiKey}.json`)
-      return dispatch(receiveProjectPoi(stateKey, res))
+      const feat = {
+        'type': 'FeatureCollection',
+        'features': res.map(f => ({
+          'type': 'Feature',
+          'properties': {
+            id: f.i
+          },
+          'geometry': {
+            'type': 'Point',
+            'coordinates': f.c
+          }
+        }))
+      }
+      return dispatch(receiveProjectPoi(stateKey, feat))
     } catch (error) {
       return dispatch(receiveProjectPoi(stateKey, null, error))
     }
@@ -59,12 +72,12 @@ const initialState = {
 export default function reducer (state = initialState, action) {
   switch (action.type) {
     case INVALIDATE_PROJ_POI:
-      const {[action.id]: _, ...rest} = state
+      const {[action.key]: _, ...rest} = state
       return rest
     case REQUEST_PROJ_POI:
       return {
         ...state,
-        [action.id]: {
+        [action.key]: {
           fetching: true,
           fetched: false,
           data: {}
@@ -74,6 +87,7 @@ export default function reducer (state = initialState, action) {
       let st = {
         fetching: false,
         fetched: true,
+        receivedAt: action.receivedAt,
         data: {},
         error: null
       }
@@ -84,7 +98,7 @@ export default function reducer (state = initialState, action) {
         st.data = action.data
       }
 
-      state = { ...state, [action.id]: st }
+      state = { ...state, [action.key]: st }
       break
   }
   return state

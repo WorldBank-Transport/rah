@@ -29,7 +29,7 @@ class ResultsMap extends React.Component {
     this.theMap.fitBounds(bbox)
     this.theMap.on('style.load', () => {
       this.mapLoaded = true
-      // this.setupData()
+      this.setupData()
     })
 
     this.theMap.on('click', 'eta', e => {
@@ -161,67 +161,67 @@ class ResultsMap extends React.Component {
   //     }
   // }
 
-  // setupData () {
-  //   if (!this.mapLoaded) {
-  //     return
-  //   }
+  setupData () {
+    if (!this.mapLoaded) {
+      return
+    }
 
-  //   if (this.props.data.fetched && !this.theMap.getSource('etaData')) {
-  //     this.theMap.addSource('etaData', {
-  //       'type': 'geojson',
-  //       'data': clone(this.props.data.data)
-  //     })
+    // if (this.props.data.fetched && !this.theMap.getSource('etaData')) {
+    //   this.theMap.addSource('etaData', {
+    //     'type': 'geojson',
+    //     'data': clone(this.props.data.data)
+    //   })
 
-  //     this.theMap.addLayer({
-  //       'id': 'eta',
-  //       'type': 'circle',
-  //       'source': 'etaData',
-  //       'paint': {
-  //         'circle-color': this.getCircleColorPaintProp(this.props.comparing),
-  //         'circle-radius': this.getCircleRadiusPaintProp(this.props.data.data),
-  //         'circle-blur': 0.5,
-  //         'circle-opacity': {
-  //           'stops': [
-  //             [0, 0.1],
-  //             [6, 0.5],
-  //             [12, 0.75],
-  //             [16, 0.9]
-  //           ]
-  //         }
-  //       }
-  //     }, 'poi')
-  //   }
+    //   this.theMap.addLayer({
+    //     'id': 'eta',
+    //     'type': 'circle',
+    //     'source': 'etaData',
+    //     'paint': {
+    //       'circle-color': this.getCircleColorPaintProp(this.props.comparing),
+    //       'circle-radius': this.getCircleRadiusPaintProp(this.props.data.data),
+    //       'circle-blur': 0.5,
+    //       'circle-opacity': {
+    //         'stops': [
+    //           [0, 0.1],
+    //           [6, 0.5],
+    //           [12, 0.75],
+    //           [16, 0.9]
+    //         ]
+    //       }
+    //     }
+    //   }, 'poi')
+    // }
 
-  //   if (this.props.poi.fetched && !this.theMap.getSource('poiData')) {
-  //     this.theMap.addSource('poiData', {
-  //       type: 'geojson',
-  //       data: clone(this.props.poi.data)
-  //     })
-  //     this.theMap.addLayer({
-  //       id: 'poi',
-  //       type: 'symbol',
-  //       source: 'poiData',
-  //       layout: {
-  //         'icon-image': 'marker-15'
-  //       }
-  //     })
-  //   }
+    if (this.props.poi.fetched && !this.theMap.getSource('poiData')) {
+      this.theMap.addSource('poiData', {
+        type: 'geojson',
+        data: this.props.poi.data
+      })
+      this.theMap.addLayer({
+        id: 'poi',
+        type: 'symbol',
+        source: 'poiData',
+        layout: {
+          'icon-image': 'marker-15'
+        }
+      })
+    }
 
-  //   if (!this.theMap.getLayer('satellite')) {
-  //     this.theMap.addLayer({
-  //       id: 'satellite',
-  //       source: {
-  //         'type': 'raster',
-  //         'url': 'mapbox://mapbox.satellite',
-  //         'tileSize': 256
-  //       },
-  //       type: 'raster',
-  //       'layout': {
-  //         'visibility': 'none'
-  //       }
-  //     }, 'road-network-cap')
-  //   }
-  // }
+    if (!this.theMap.getLayer('satellite')) {
+      this.theMap.addLayer({
+        id: 'satellite',
+        source: {
+          'type': 'raster',
+          'url': 'mapbox://mapbox.satellite',
+          'tileSize': 256
+        },
+        type: 'raster',
+        'layout': {
+          'visibility': 'none'
+        }
+      })
+    }
+  }
 
   componentDidMount () {
     if (this.props.bbox) this.setupMap()
@@ -233,27 +233,27 @@ class ResultsMap extends React.Component {
     }
   }
 
-  // componentDidUpdate (prevProps) {
-  //   if (this.props.data.fetched && this.props.data.receivedAt !== prevProps.data.receivedAt) {
-  //     let source = this.theMap.getSource('etaData')
-  //     if (source) {
-  //       source.setData(clone(this.props.data.data))
-  //       this.theMap.setPaintProperty('eta', 'circle-radius', this.getCircleRadiusPaintProp(this.props.data.data))
-  //       this.theMap.setPaintProperty('eta', 'circle-color', this.getCircleColorPaintProp(this.props.comparing))
-  //     } else {
-  //       this.setupData()
-  //     }
-  //   }
+  componentDidUpdate (prevProps) {
+    // if (this.props.data.fetched && this.props.data.receivedAt !== prevProps.data.receivedAt) {
+    //   let source = this.theMap.getSource('etaData')
+    //   if (source) {
+    //     source.setData(clone(this.props.data.data))
+    //     this.theMap.setPaintProperty('eta', 'circle-radius', this.getCircleRadiusPaintProp(this.props.data.data))
+    //     this.theMap.setPaintProperty('eta', 'circle-color', this.getCircleColorPaintProp(this.props.comparing))
+    //   } else {
+    //     this.setupData()
+    //   }
+    // }
 
-  //   if (this.props.poi.fetched && this.props.poi.receivedAt !== prevProps.poi.receivedAt) {
-  //     let source = this.theMap.getSource('poiData')
-  //     if (source) {
-  //       source.setData(clone(this.props.poi.data))
-  //     } else {
-  //       this.setupData()
-  //     }
-  //   }
-  // }
+    if (this.props.poi.fetched && this.props.poi.receivedAt !== prevProps.poi.receivedAt) {
+      let source = this.theMap.getSource('poiData')
+      if (source) {
+        source.setData(this.props.poi.data)
+      } else {
+        this.setupData()
+      }
+    }
+  }
 
   // renderPopLegend () {
   //   const data = this.props.data.data

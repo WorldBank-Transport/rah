@@ -83,6 +83,7 @@ export default function reducer (state = initialState, action) {
       let st = {
         fetching: false,
         fetched: true,
+        receivedAt: action.receivedAt,
         data: {},
         error: null
       }

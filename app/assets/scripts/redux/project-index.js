@@ -61,17 +61,21 @@ export default function reducer (state = initialState, action) {
         fetched: false
       }
     case RECEIVE_PROJ_IDX:
-      state = {
-        ...state,
+      let st = {
         fetching: false,
-        fetched: true
+        fetched: true,
+        receivedAt: action.receivedAt,
+        data: {},
+        error: null
       }
 
       if (action.error) {
-        state.error = action.error
+        st.error = action.error
       } else {
-        state.data = action.data
+        st.data = action.data
       }
+
+      state = st
       break
   }
   return state

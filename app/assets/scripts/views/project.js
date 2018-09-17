@@ -169,6 +169,7 @@ class Project extends React.Component {
         />
 
         <ResultsMap
+          poi={this.props.poi}
           bbox={bbox}
         />
       </Fragment>
