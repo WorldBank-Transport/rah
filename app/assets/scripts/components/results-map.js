@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import mapboxgl from 'mapbox-gl'
 
 import { environment, mbtoken } from '../config'
-// import { toTimeStr } from '../../utils/utils'
+import { toTimeStr } from '../utils/utils'
 
 import LayerControl from './map-layer-control'
 
@@ -50,34 +50,33 @@ class ResultsMap extends React.Component {
     this.theMap.addControl(new LayerControl(), 'top-left')
   }
 
-  // onPopoverCloseClick () {
-  //   this.popover.remove()
-  // }
+  onPopoverCloseClick () {
+    this.popover.remove()
+  }
 
-  // showPopover (feature) {
-  //   let popoverContent = document.createElement('div')
+  showPopover (feature) {
+    let popoverContent = document.createElement('div')
+    const {popMeta, poiMeta} = this.props
 
-  //   render(<MapPopover
-  //     name={feature.properties.n}
-  //     pop={feature.properties.p}
-  //     popIndName={this.props.popIndName}
-  //     time={this.props.comparing ? feature.properties.eDelta : feature.properties.e}
-  //     comparing={this.props.comparing}
-  //     compareScenarioName={this.props.compareScenarioName}
-  //     poiName={this.props.poiName}
-  //     onCloseClick={this.onPopoverCloseClick.bind(this)} />, popoverContent)
+    render(<MapPopover
+      name={feature.properties.name}
+      pop={feature.properties[popMeta.key]}
+      time={feature.properties[poiMeta.key]}
+      popMeta={popMeta}
+      poiMeta={poiMeta}
+      onCloseClick={this.onPopoverCloseClick.bind(this)} />, popoverContent)
 
-  //   // Populate the popup and set its coordinates
-  //   // based on the feature found.
-  //   if (this.popover != null) {
-  //     this.popover.remove()
-  //   }
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    if (this.popover != null) {
+      this.popover.remove()
+    }
 
-  //   this.popover = new mapboxgl.Popup({closeButton: false})
-  //     .setLngLat(feature.geometry.coordinates)
-  //     .setDOMContent(popoverContent)
-  //     .addTo(this.theMap)
-  // }
+    this.popover = new mapboxgl.Popup({closeButton: false})
+      .setLngLat(feature.geometry.coordinates)
+      .setDOMContent(popoverContent)
+      .addTo(this.theMap)
+  }
 
   getPopBuckets (featColl, property) {
     const feats = featColl.features
@@ -336,49 +335,42 @@ if (environment !== 'production') {
 
 export default ResultsMap
 
-// class MapPopover extends React.Component {
-//   render () {
-//     let label = this.props.comparing ? t('Compared to {name}', {name: this.props.compareScenarioName}) : t('Nearest POI')
-//     let time
-//     if (this.props.comparing) {
-//       time = this.props.time === 0 ? t('no difference') : `${toTimeStr(Math.abs(this.props.time))} ${this.props.time < 0 ? t('faster') : t('slower')}`
-//     } else {
-//       time = toTimeStr(this.props.time)
-//     }
-//     return (
-//       <article className='popover'>
-//         <div className='popover__contents'>
-//           <header className='popover__header'>
-//             <div className='popover__headline'>
-//               <h1 className='popover__title'>{this.props.name}</h1>
-//             </div>
-//             <div className='popover__actions actions'>
-//               <ul className='actions__menu'>
-//                 <li><button type='button' className='actions__menu-item poa-xmark' title='Close popover' onClick={this.props.onCloseClick}><span>{t('Dismiss')}</span></button></li>
-//               </ul>
-//             </div>
-//           </header>
-//           <div className='popover__body'>
-//             <dl className='dl-horizontal popover__details'>
-//               <dt>{this.props.popIndName}</dt>
-//               <dd>{this.props.pop}</dd>
-//               <dt>{label}</dt>
-//               <dd>{time}</dd>
-//             </dl>
-//           </div>
-//         </div>
-//       </article>
-//     )
-//   }
-// }
+class MapPopover extends React.Component {
+  render () {
+    return (
+      <article className='popover'>
+        <div className='popover__contents'>
+          <header className='popover__header'>
+            <div className='popover__headline'>
+              <h1 className='popover__title'>{this.props.name}</h1>
+            </div>
+            <div className='popover__actions actions'>
+              <ul className='actions__menu'>
+                <li><button type='button' className='actions__menu-item poa-xmark' title='Close popover' onClick={this.props.onCloseClick}><span>Dismiss</span></button></li>
+              </ul>
+            </div>
+          </header>
+          <div className='popover__body'>
+            <dl className='dl-horizontal popover__details'>
+              <dt>{this.props.popMeta.label}</dt>
+              <dd>{this.props.pop}</dd>
+              <dt>Nearest POI ({this.props.poiMeta.label})</dt>
+              <dd>{toTimeStr(this.props.time)}</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+    )
+  }
+}
 
-// MapPopover.propTypes = {
-//   name: T.string,
-//   pop: T.number,
-//   popIndName: T.string,
-//   time: T.number,
-//   poiName: T.string,
-//   comparing: T.bool,
-//   compareScenarioName: T.string,
-//   onCloseClick: T.func
-// }
+if (environment !== 'production') {
+  MapPopover.propTypes = {
+    name: T.string,
+    pop: T.number,
+    time: T.number,
+    popMeta: T.object,
+    poiMeta: T.object,
+    onCloseClick: T.func
+  }
+}
