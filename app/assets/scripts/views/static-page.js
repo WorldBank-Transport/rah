@@ -6,7 +6,7 @@ import get from 'lodash.get'
 import Markdown from 'react-markdown'
 
 import { environment } from '../config'
-import { fetchPage } from '../actions'
+import { fetchPage } from '../redux/static-page'
 
 import App from './app'
 import UhOh from './uhoh'
