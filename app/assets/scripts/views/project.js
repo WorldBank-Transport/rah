@@ -31,9 +31,9 @@ const getFilters = (props) => {
     .split('&')
     .reduce((acc, o) => {
       const [k, v] = o.split('=')
-      if (typeof v === 'undefined') return acc
-
-      return {...acc, [k]: v}
+      return typeof v !== 'undefined'
+        ? {...acc, [k]: decodeURIComponent(v)}
+        : acc
     }, {})
 
   const { poiTypes, popIndicators, scenarios } = props.projectMeta.data
@@ -65,14 +65,13 @@ class Project extends React.Component {
     if (hasResults) {
       // The project has results. Fetch the meta data.
       await fetchProjectMeta(projId)
-      const {error, data: {poiTypes, scenarios}} = this.props.projectMeta
-      if (!error) {
+      if (!this.props.projectMeta.error) {
         const filters = getFilters(this.props)
         this.props.history.replace({ search: objectToSearchString(filters) })
         // No errors occurred, fetch the actual data.
         await Promise.all([
-          fetchProjectPoi(projId, poiTypes[0].key),
-          fetchProjectResults(projId, scenarios[0].id)
+          fetchProjectPoi(projId, filters.poi),
+          fetchProjectResults(projId, filters.scenario)
         ])
         hideGlobalLoading()
       } else {
