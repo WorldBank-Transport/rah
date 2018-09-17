@@ -10,6 +10,7 @@ contact:
   name: QL
   email: sample@sample.com
 published: true
+include_results: true
 contact_name: QL
 contact_email: sample@sample.com
 ---

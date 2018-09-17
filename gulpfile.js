@@ -27,6 +27,8 @@ const kebabcase = require('lodash.kebabcase')
 const MarkdownIt = require('markdown-it')
 const stripTags = require('striptags')
 
+const countries = require('./app/assets/scripts/utils/countries')
+
 // /////////////////////////////////////////////////////////////////////////////
 // --------------------------- Variables -------------------------------------//
 // ---------------------------------------------------------------------------//
@@ -291,10 +293,18 @@ gulp.task('content', function () {
 
 // Index the tags in the projects. This is used by the RRA to show the
 // autocomplete options.
+// Also create the JSONP files for Prose.
 gulp.task('tags', function () {
   return gulp.src('app/assets/content/projects/**/*.md')
     .pipe(extractTags())
     .pipe(gulp.dest('dist/assets/content'))
+})
+
+// Create an index of countries as JSONP to be used by Prose.
+gulp.task('countriesp', function (cb) {
+  const countriesJP = countries.map(c => ({name: c.code, value: c.name}))
+  fs.writeFileSync('dist/assets/content/countries.jsonp', `countries_cb(${JSON.stringify(countriesJP)})`)
+  return cb()
 })
 
 function createPorjectsIndex (name) {
@@ -383,6 +393,22 @@ function extractTags () {
       base: path.join(__dirname, 'app/assets/content/projects'),
       path: path.join(__dirname, 'app/assets/content/projects', 'authors.json'),
       contents: Buffer.from(JSON.stringify(tags.authors))
+    }))
+
+    // Create JSONP of tags according to https://github.com/prose/prose/wiki/Prose-Configuration#select--multiselect
+    const topicsJP = tags.topics.map(o => ({name: o.id, value: o.name}))
+    this.push(new Vinyl({
+      cwd: __dirname,
+      base: path.join(__dirname, 'app/assets/content/projects'),
+      path: path.join(__dirname, 'app/assets/content/projects', 'topics.jsonp'),
+      contents: Buffer.from(`topics_cb(${JSON.stringify(topicsJP)})`)
+    }))
+    const authorsJP = tags.authors.map(o => ({name: o.id, value: o.name}))
+    this.push(new Vinyl({
+      cwd: __dirname,
+      base: path.join(__dirname, 'app/assets/content/projects'),
+      path: path.join(__dirname, 'app/assets/content/projects', 'authors.jsonp'),
+      contents: Buffer.from(`authors_cb(${JSON.stringify(authorsJP)})`)
     }))
 
     cb()
