@@ -40,3 +40,7 @@ prose:
         field:
           element: 'text'
           label: 'Contact email'
+      - name: 'include_results'
+        field:
+          element: 'chekcbox'
+          label: 'Include result data'
