@@ -15,7 +15,7 @@ prose:
         field:
           element: 'text'
           label: 'Country code'
-          options: 'https://rah.surge.sh/assets/content/countries.json?callback=countries_cb'
+          options: 'https://rah.surge.sh/assets/content/countries.jsonp?callback=countries_cb'
       - name: 'date'
         field:
           element: 'text'
@@ -24,13 +24,13 @@ prose:
         field:
           element: 'multiselect'
           label: 'Authors'
-          options: 'https://rah.surge.sh/assets/content/authors.json?callback=authors_cb'
+          options: 'https://rah.surge.sh/assets/content/authors.jsonp?callback=authors_cb'
           alterable: true
       - name: 'topics'
         field:
           element: 'multiselect'
           label: 'Topics'
-          options: 'https://rah.surge.sh/assets/content/topics.json?callback=topics_cb'
+          options: 'https://rah.surge.sh/assets/content/topics.jsonp?callback=topics_cb'
           alterable: true
       - name: 'contact_name'
         field:
