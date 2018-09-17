@@ -123,6 +123,9 @@ class Project extends React.Component {
     const tpc = topics.length ? topics.join(', ') : 'N/A'
     const aut = authors.length ? authors.join(', ') : 'N/A'
 
+    const contactName = get(this.props.project.data, 'contact_name', null)
+    const contactEmail = get(this.props.project.data, 'contact_email', null)
+
     return (
       <Fragment>
         <h1 className='inlay__title'>Details</h1>
@@ -135,6 +138,8 @@ class Project extends React.Component {
           <dd>{tpc}</dd>
           <dt>Authors</dt>
           <dd>{aut}</dd>
+          <dt>Contact</dt>
+          <dd><a href={`mailto:${contactEmail}`} title={`Send an email to ${contactName}`}>{contactName}</a></dd>
         </dl>
       </Fragment>
     )
