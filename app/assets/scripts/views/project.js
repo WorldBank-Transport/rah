@@ -316,6 +316,7 @@ class FiltersBar extends React.PureComponent {
             title={'Population'}
             triggerText={activePopIndLabel}
             triggerTitle={'Change population'}
+            alignment='left'
             items={popInd.map(o => ({...o, title: 'Select Population'}))}
             activeItem={activePopInd}
           />
@@ -324,6 +325,7 @@ class FiltersBar extends React.PureComponent {
             title={'Point of interest'}
             triggerText={activePoiTypeLabel}
             triggerTitle={'Change point of interest'}
+            alignment='left'
             items={poiTypes.map(o => ({...o, title: 'Select point of interest'}))}
             activeItem={activePoiType}
           />
@@ -334,6 +336,7 @@ class FiltersBar extends React.PureComponent {
             title={'Scenario'}
             triggerText={activeScenarioName}
             triggerTitle={'Change scenario'}
+            alignment='right'
             items={scenarios.map(o => ({key: o.id, label: o.name, title: 'Select scenario'}))}
             activeItem={activeScenario}
           />
@@ -361,6 +364,7 @@ const FiltersBarItem = (props) => {
     title,
     triggerText,
     triggerTitle,
+    alignment,
     items,
     activeItem
   } = props
@@ -376,7 +380,7 @@ const FiltersBarItem = (props) => {
           triggerText={triggerText}
           triggerTitle={triggerTitle}
           direction='down'
-          alignment='left' >
+          alignment={alignment} >
           <ul className='drop__menu drop__menu--select' role='menu'>
             {items.map(o => (
               <li key={o.key}>
@@ -403,6 +407,7 @@ if (environment !== 'production') {
     title: T.string,
     triggerText: T.string,
     triggerTitle: T.string,
+    alignment: T.string,
     items: T.array,
     activeItem: T.oneOfType([T.string, T.number])
   }
