@@ -2,7 +2,6 @@
 title: Lisbon accessibility
 country: PT
 date: 2018-07-31T23:00:00.000Z
-include_results: false
 authors:
   - Daniel da Silva
   - Olaf Veerman
@@ -11,7 +10,8 @@ topics:
   - Accessibility
 contact_name: Daniel da Silva
 contact_email: daniel@developmentseed.org
-
+published: true
+include_results: true
 ---
 # Framework
 
