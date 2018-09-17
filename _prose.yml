@@ -42,5 +42,5 @@ prose:
           label: 'Contact email'
       - name: 'include_results'
         field:
-          element: 'chekcbox'
+          element: 'checkbox'
           label: 'Include result data'
