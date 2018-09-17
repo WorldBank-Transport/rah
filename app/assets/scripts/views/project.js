@@ -199,7 +199,7 @@ class Project extends React.Component {
               </div>
               <div className='inpage__actions'>
                 <Share />
-                <a href={`${baseurl}/assets/content/projects/${this.props.match.params.id}/results.zip`} className='ipa-download ipa-main' title='Download'><span>Download</span></a>
+                <a href={`${baseurl}/assets/content/projects/${this.props.match.params.id}/results.zip`} className={c('ipa-download ipa-main', {disabled: !data.include_results})}title='Download'><span>Download</span></a>
               </div>
             </div>
           </header>
