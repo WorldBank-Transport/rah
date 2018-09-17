@@ -21,17 +21,38 @@ import Share from '../components/share'
 import Dropdown from '../components/dropdown'
 import ResultsMap from '../components/results-map'
 
+const objectToSearchString = (obj) => {
+  return Object.keys(obj).map(k => `${k}=${obj[k]}`).join('&')
+}
+
+const getFilters = (props) => {
+  // Converto search string to object.
+  const qs = props.location.search.substr(1)
+    .split('&')
+    .reduce((acc, o) => {
+      const [k, v] = o.split('=')
+      if (typeof v === 'undefined') return acc
+
+      return {...acc, [k]: v}
+    }, {})
+
+  const { poiTypes, popIndicators, scenarios } = props.projectMeta.data
+  const poiOpt = poiTypes.map(o => o.key)
+  const popOpt = popIndicators.map(o => o.key)
+  const scenOpt = scenarios.map(o => o.id)
+
+  return {
+    poi: poiOpt.indexOf(qs.poi) === -1 ? poiOpt[0] : qs.poi,
+    pop: popOpt.indexOf(qs.pop) === -1 ? popOpt[0] : qs.pop,
+    scenario: scenOpt.indexOf(parseInt(qs.scenario)) === -1 ? scenOpt[0] : parseInt(qs.scenario)
+  }
+}
+
 class Project extends React.Component {
   constructor (props) {
     super(props)
 
     this.onFilterChange = this.onFilterChange.bind(this)
-
-    this.state = {
-      activePoiType: null,
-      activePopInd: null,
-      activeScenario: null
-    }
   }
 
   async componentWillMount () {
@@ -44,13 +65,10 @@ class Project extends React.Component {
     if (hasResults) {
       // The project has results. Fetch the meta data.
       await fetchProjectMeta(projId)
-      const {error, data: {poiTypes, popIndicators, scenarios}} = this.props.projectMeta
+      const {error, data: {poiTypes, scenarios}} = this.props.projectMeta
       if (!error) {
-        this.setState({
-          activePoiType: poiTypes[0].key,
-          activePopInd: popIndicators[0].key,
-          activeScenario: scenarios[0].id
-        })
+        const filters = getFilters(this.props)
+        this.props.history.replace({ search: objectToSearchString(filters) })
         // No errors occurred, fetch the actual data.
         await Promise.all([
           fetchProjectPoi(projId, poiTypes[0].key),
@@ -71,22 +89,29 @@ class Project extends React.Component {
     showGlobalLoading()
   }
 
-  onFilterChange (field, value, event) {
+  async onFilterChange (field, value, event) {
     event.preventDefault()
 
+    let filters = getFilters(this.props)
     // Avoid setting state when nothing changed.
-    if (this.state[field] === value) return
+    if (filters[field] === value) return
 
-    this.setState({[field]: value}, async () => {
-      const projId = this.props.match.params.id
-      showGlobalLoading()
-      if (field === 'activePoiType') {
-        await this.props.fetchProjectPoi(projId, value)
-      } else if (field === 'activeScenario') {
-        await this.props.fetchProjectResults(projId, value)
-      }
-      hideGlobalLoading()
+    filters = {
+      ...filters,
+      [field]: value
+    }
+    this.props.history.push({
+      search: objectToSearchString(filters)
     })
+
+    const projId = this.props.match.params.id
+    showGlobalLoading()
+    if (field === 'poi') {
+      await this.props.fetchProjectPoi(projId, value)
+    } else if (field === 'scenario') {
+      await this.props.fetchProjectResults(projId, value)
+    }
+    hideGlobalLoading()
   }
 
   renderDetails () {
@@ -129,13 +154,15 @@ class Project extends React.Component {
 
     if (fetched && error) return <p>An error occurred fetching the results. Try again</p>
 
+    const filters = getFilters(this.props)
+
     return (
       <Fragment>
         <FiltersBar
           onFilterChange={this.onFilterChange}
-          activePopInd={this.state.activePopInd}
-          activePoiType={this.state.activePoiType}
-          activeScenario={this.state.activeScenario}
+          activePopInd={filters.pop}
+          activePoiType={filters.poi}
+          activeScenario={filters.scenario}
           popInd={popIndicators}
           poiTypes={poiTypes}
           scenarios={scenarios}
@@ -198,21 +225,39 @@ class Project extends React.Component {
 
 if (environment !== 'production') {
   Project.propTypes = {
+    history: T.object,
+    location: T.object,
     fetchPage: T.func,
     fetchProjectMeta: T.func,
     fetchProjectPoi: T.func,
     fetchProjectResults: T.func,
     match: T.object,
     project: T.object,
-    projectMeta: T.object
+    projectMeta: T.object,
+    poi: T.object
   }
 }
 
 function mapStateToProps (state, props) {
-  return {
-    project: get(state.staticPages, `project-${props.match.params.id}`, {fetched: false, fetching: false, data: {}}),
-    projectMeta: get(state.projectMeta, props.match.params.id, {fetched: false, fetching: false, data: {}})
+  const empty = {fetched: false, fetching: false, data: {}}
+  let mapping = {
+    project: get(state.staticPages, `project-${props.match.params.id}`, empty),
+    projectMeta: get(state.projectMeta, props.match.params.id, empty)
   }
+
+  if (mapping.projectMeta.fetched && !mapping.projectMeta.error) {
+    // Simulate component props.
+    const filters = getFilters({...props, ...mapping})
+    const key = `${props.match.params.id}-${filters.poi}`
+    mapping = {
+      ...mapping,
+      poi: get(state.projectPoi, key, empty)
+    }
+  } else {
+    mapping = { ...mapping, poi: empty }
+  }
+
+  return mapping
 }
 
 function dispatcher (dispatch) {
@@ -251,7 +296,7 @@ class FiltersBar extends React.PureComponent {
       <nav className='inpage__sec-nav'>
         <dl className='filter-menu'>
           <FiltersBarItem
-            onFilterChange={onFilterChange.bind(this, 'activePopInd')}
+            onFilterChange={onFilterChange.bind(this, 'pop')}
             title={'Population'}
             triggerText={activePopIndLabel}
             triggerTitle={'Change population'}
@@ -259,7 +304,7 @@ class FiltersBar extends React.PureComponent {
             activeItem={activePopInd}
           />
           <FiltersBarItem
-            onFilterChange={onFilterChange.bind(this, 'activePoiType')}
+            onFilterChange={onFilterChange.bind(this, 'poi')}
             title={'Point of interest'}
             triggerText={activePoiTypeLabel}
             triggerTitle={'Change point of interest'}
@@ -269,7 +314,7 @@ class FiltersBar extends React.PureComponent {
         </dl>
         <dl className='filter-menu'>
           <FiltersBarItem
-            onFilterChange={onFilterChange.bind(this, 'activeScenario')}
+            onFilterChange={onFilterChange.bind(this, 'scenario')}
             title={'Scenario'}
             triggerText={activeScenarioName}
             triggerTitle={'Change scenario'}
