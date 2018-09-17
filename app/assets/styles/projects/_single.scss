@@ -1,6 +1,11 @@
 /* ==========================================================================
    Projects: Single
    ========================================================================== */
+.inpage--project {
+  .alert {
+    margin-bottom: $global-spacing * 2;
+  }
+}
 
 .inlay {}
 
@@ -89,7 +94,11 @@
 /* Results: ETA Vis
    ========================================================================== */
 
-  .eta-vis__map {
+.eta-vis__media {
+  margin: ($global-spacing * 2) 0 ($global-spacing * 2) 0;
+}
+
+.eta-vis__map {
   height: 32rem;
 }
 

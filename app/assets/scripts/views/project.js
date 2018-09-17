@@ -146,8 +146,15 @@ class Project extends React.Component {
   }
 
   renderNoResults () {
+    const contactName = get(this.props.project.data, 'contact_name', null)
+    const contactEmail = get(this.props.project.data, 'contact_email', null)
+
     return (
-      <p>No results were exported for this project. Contact... </p>
+      <div className='alert alert--info'>
+        <div className='alert__body'>
+          <p>No results were exported for this project. Contact <a href={`mailto:${contactEmail}`} title={`Send an email to ${contactName}`}>{contactName}</a> for more information.</p>
+        </div>
+      </div>
     )
   }
 
