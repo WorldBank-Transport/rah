@@ -13,7 +13,7 @@ prose:
           label: 'Title'
       - name: 'country'
         field:
-          element: 'text'
+          element: 'select'
           label: 'Country code'
           options: 'https://rah.surge.sh/assets/content/countries.jsonp?callback=countries_cb'
       - name: 'date'
