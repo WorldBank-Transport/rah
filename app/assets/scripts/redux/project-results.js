@@ -37,7 +37,38 @@ export function fetchProjectResults (projId, scId) {
 
     try {
       const res = await fetchJSON(`${config.baseurl}/assets/content/projects/${projId}/results-sc-${scId}.json`)
-      return dispatch(receiveProjectResults(stateKey, res))
+
+      // To correctly convert the faux feature to an actual feature collection
+      // we need the data from the project meta. Throw an error if it is
+      // not available.
+      const projMetaData = get(getState(), ['projectMeta', projId, 'data'], null)
+      if (!projMetaData) throw new Error('Project meta data is not available in the state')
+
+      // Create key matrix to map poi and population faux keys to actual ones.
+      const keyMatrix = {
+        ...projMetaData.poiTypes.reduce((acc, o) => ({...acc, [o.prop]: o.key}), {}),
+        ...projMetaData.popIndicators.reduce((acc, o) => ({...acc, [o.prop]: o.key}), {})
+      }
+
+      const feat = {
+        'type': 'FeatureCollection',
+        'features': res.map(f => {
+          const {i, n, c, ...data} = f
+          const props = Object.keys(data).reduce((acc, k) => ({
+            ...acc, [keyMatrix[k]]: data[k]
+          }), {})
+
+          return {
+            'type': 'Feature',
+            'properties': { id: i, name: n, ...props },
+            'geometry': {
+              'type': 'Point',
+              'coordinates': c
+            }
+          }
+        })
+      }
+      return dispatch(receiveProjectResults(stateKey, feat))
     } catch (error) {
       return dispatch(receiveProjectResults(stateKey, null, error))
     }

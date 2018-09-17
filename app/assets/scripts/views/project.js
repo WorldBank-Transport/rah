@@ -168,7 +168,10 @@ class Project extends React.Component {
         />
 
         <ResultsMap
+          popMeta={popIndicators.find(o => o.key === filters.pop)}
+          poiMeta={poiTypes.find(o => o.key === filters.poi)}
           poi={this.props.poi}
+          data={this.props.results}
           bbox={bbox}
         />
       </Fragment>
@@ -234,7 +237,8 @@ if (environment !== 'production') {
     match: T.object,
     project: T.object,
     projectMeta: T.object,
-    poi: T.object
+    poi: T.object,
+    results: T.object
   }
 }
 
@@ -248,13 +252,13 @@ function mapStateToProps (state, props) {
   if (mapping.projectMeta.fetched && !mapping.projectMeta.error) {
     // Simulate component props.
     const filters = getFilters({...props, ...mapping})
-    const key = `${props.match.params.id}-${filters.poi}`
     mapping = {
       ...mapping,
-      poi: get(state.projectPoi, key, empty)
+      poi: get(state.projectPoi, `${props.match.params.id}-${filters.poi}`, empty),
+      results: get(state.projectResults, `${props.match.params.id}-${filters.scenario}`, empty)
     }
   } else {
-    mapping = { ...mapping, poi: empty }
+    mapping = { ...mapping, poi: empty, results: empty }
   }
 
   return mapping
