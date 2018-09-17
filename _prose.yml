@@ -1,0 +1,42 @@
+prose:
+  rooturl: 'app/assets/content'
+  ignore: 
+    - '*/*.zip'
+    - '*/.gitkeep'
+    - '*/*.json'
+    - '*/*.jsonp'
+  metadata:
+    app/assets/content/projects:
+      - name: 'title'
+        field:
+          element: 'text'
+          label: 'Title'
+      - name: 'country'
+        field:
+          element: 'text'
+          label: 'Country code'
+          options: 'https://rah.surge.sh/assets/content/countries.json?callback=countries_cb'
+      - name: 'date'
+        field:
+          element: 'text'
+          label: 'Date posted'
+      - name: 'authors'
+        field:
+          element: 'multiselect'
+          label: 'Authors'
+          options: 'https://rah.surge.sh/assets/content/authors.json?callback=authors_cb'
+          alterable: true
+      - name: 'topics'
+        field:
+          element: 'multiselect'
+          label: 'Topics'
+          options: 'https://rah.surge.sh/assets/content/topics.json?callback=topics_cb'
+          alterable: true
+      - name: 'contact_name'
+        field:
+          element: 'text'
+          label: 'Contact person'
+      - name: 'contact_email'
+        field:
+          element: 'text'
+          label: 'Contact email'
