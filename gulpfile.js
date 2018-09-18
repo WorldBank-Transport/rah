@@ -202,7 +202,7 @@ gulp.task('collecticons', function (done) {
 // --------------------------- Helper tasks -----------------------------------//
 // ----------------------------------------------------------------------------//
 
-gulp.task('build', ['vendorScripts', 'javascript', 'content', 'tags'], function () {
+gulp.task('build', ['vendorScripts', 'javascript', 'content', 'tags', 'countriesp'], function () {
   gulp.start(['html', 'images', 'extras'], function () {
     return gulp.src('dist/**/*')
       .pipe($.size({title: 'build', gzip: true}))
@@ -302,9 +302,24 @@ gulp.task('tags', function () {
 
 // Create an index of countries as JSONP to be used by Prose.
 gulp.task('countriesp', function (cb) {
-  const countriesJP = countries.map(c => ({name: c.code, value: c.name}))
-  fs.writeFileSync('dist/assets/content/countries.jsonp', `countries_cb(${JSON.stringify(countriesJP)})`)
-  return cb()
+  const countriesJP = countries.map(c => ({name: c.name, value: c.code}))
+  const fauxFile = new Vinyl({
+    cwd: '',
+    base: undefined,
+    path: 'countries.jsonp',
+    contents: Buffer.from(`countries_cb(${JSON.stringify(countriesJP)})`)
+  })
+
+  // Create a stream from the faux file to pipe into gulp's methods.
+  var stream = through.obj(function (file, enc, cb) {
+    this.push(file)
+    return cb()
+  })
+  stream.write(fauxFile)
+  stream.end()
+
+  return stream
+    .pipe(gulp.dest('dist/assets/content'))
 })
 
 function createPorjectsIndex (name) {
@@ -396,14 +411,14 @@ function extractTags () {
     }))
 
     // Create JSONP of tags according to https://github.com/prose/prose/wiki/Prose-Configuration#select--multiselect
-    const topicsJP = tags.topics.map(o => ({name: o.id, value: o.name}))
+    const topicsJP = tags.topics.map(o => ({name: o.name, value: o.name}))
     this.push(new Vinyl({
       cwd: __dirname,
       base: path.join(__dirname, 'app/assets/content/projects'),
       path: path.join(__dirname, 'app/assets/content/projects', 'topics.jsonp'),
       contents: Buffer.from(`topics_cb(${JSON.stringify(topicsJP)})`)
     }))
-    const authorsJP = tags.authors.map(o => ({name: o.id, value: o.name}))
+    const authorsJP = tags.authors.map(o => ({name: o.name, value: o.name}))
     this.push(new Vinyl({
       cwd: __dirname,
       base: path.join(__dirname, 'app/assets/content/projects'),
