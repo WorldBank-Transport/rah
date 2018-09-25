@@ -94,10 +94,34 @@ class Home extends React.Component {
   }
 
   render () {
-    const {fetching, fetched, data} = this.props.projects
+    const {fetching, fetched, data, error} = this.props.projects
     const projectsToShow = this.pageSize * this.state.page
 
     if (!fetched || fetching) return null
+
+    if (error) {
+      return (
+        <App>
+          <section className='inpage inpage--uhoh'>
+            <header className='inpage__header'>
+              <div className='inner'>
+                <div className='inpage__headline'>
+                  <h1 className='inpage__title'>An error occurred</h1>
+                </div>
+              </div>
+            </header>
+            <div className='inpage__body'>
+              <div className='inner'>
+                <div className='prose'>
+                  <p>An error occurred trying to reach the server. Please try again later.</p>
+                  <p>In the mean time visit the <Link to='/about' title='Visit about page'>about page</Link> for more information or if the error persists <a href='mailto:email@domain.com' title='Get in touch'>contact us</a> about the problem.</p>
+                </div>  
+              </div>
+            </div>
+          </section>
+        </App>
+      )
+    }
 
     const { year, country, topic } = this.state.activeFilters
     const projectsFiltered = data.index
