@@ -115,7 +115,7 @@ class Home extends React.Component {
                 <div className='prose'>
                   <p>An error occurred trying to reach the server. Please try again later.</p>
                   <p>In the mean time visit the <Link to='/about' title='Visit about page'>about page</Link> for more information or if the error persists <a href='mailto:email@domain.com' title='Get in touch'>contact us</a> about the problem.</p>
-                </div>  
+                </div>
               </div>
             </div>
           </section>
