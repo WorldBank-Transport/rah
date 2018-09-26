@@ -29,7 +29,7 @@ if (process.env.DS_ENV !== 'staging' && process.env.DS_ENV !== 'production') {
   config = defaultsDeep(configurations.local || {}, config)
 }
 
-config.default.mbtoken = process.env.MB_TOKEN || config.mbtoken
+config.default.mbtoken = process.env.MB_TOKEN || config.default.mbtoken
 
 // The require doesn't play super well with es6 imports. It creates an internal
 // 'default' property. Export that.

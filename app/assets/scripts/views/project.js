@@ -53,9 +53,19 @@ class Project extends React.Component {
     super(props)
 
     this.onFilterChange = this.onFilterChange.bind(this)
+
+    this.fetchData()
   }
 
-  async componentWillMount () {
+  componentDidMount () {
+    // We can't show the loading on the fetchData method, because the
+    // DOM is not mounted and there is no loading component yet.
+    // Show it as soon as possible. The fetchData method will then take care of
+    // hiding it.
+    showGlobalLoading()
+  }
+
+  async fetchData () {
     const projId = this.props.match.params.id
     const {fetchPage, fetchProjectMeta, fetchProjectPoi, fetchProjectResults} = this.props
     // Fetch the page data.
@@ -80,12 +90,6 @@ class Project extends React.Component {
     } else {
       hideGlobalLoading()
     }
-  }
-
-  componentDidMount () {
-    // We can't show the loading on the componentWillMount method, because the
-    // DOM is not mounted and there is no loading component yet.
-    showGlobalLoading()
   }
 
   async onFilterChange (field, value, event) {

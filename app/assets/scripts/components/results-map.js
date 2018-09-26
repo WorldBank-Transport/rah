@@ -9,8 +9,6 @@ import { toTimeStr } from '../utils/utils'
 
 import LayerControl from './map-layer-control'
 
-const clone = data => JSON.parse(JSON.stringify(data))
-
 class ResultsMap extends React.Component {
   setupMap () {
     this.popover = null
